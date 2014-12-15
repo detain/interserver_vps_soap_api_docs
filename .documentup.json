@@ -1,0 +1,9 @@
+{
+  "name": "Interserver VPS API Documentation",
+  "twitter": [
+    "interserver"
+  ],
+  "theme": "v1",
+  "google_analytics": "UA-32229521-1",
+  "travis": false
+}
