@@ -2,20 +2,7 @@
 # InterServer VPS SOAP API Documentation
 
 Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software
-Version 1.0 – December 14, 2014
-
-[ToC]
-
-** **
-
-
-
-
-
-©2014 InterServer
-
-
-
+Version 1.0 – December 14, 2014 - ©2014 InterServer
 
 
 
