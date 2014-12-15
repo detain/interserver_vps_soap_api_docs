@@ -2,8 +2,23 @@
 # InterServer VPS SOAP API Documentation
 
 Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software
+
+
+
+- - -
+
+_ _ _
+
+_ _ _
+
+_ _ _
+
+_ _ _
+
 Version 1.0 – December 14, 2014 - ©2014 InterServer
 
+
+* * *
 
 
 ## Connecting To the API
@@ -18,22 +33,54 @@ To use the API you will need to first have an account with us.  You can sign up
 
 ### Authentication
 
-# We use a session based authentication system.   You will need to authenticate yourself with our system to get a Session ID.   Once you have a Session ID, you just pass that to prove your identity.  
+* We use a session based authentication system.   You will need to authenticate yourself with our system to get a Session ID.   Once you have a Session ID, you just pass that to prove your identity.  
 
 * To get a Session ID, you need to make a SOAP call to api_login(\$login, \$password)  using the information you use to login to [https://my.interserver.net](https://my.interserver.net)
 
 * Sending an api_login(\$login, \$password) call will attempt to authenticate your account and if successful will return a Session ID valid for at least several hours.    Subsequent commands and calls to the API will need this Session ID, so keep it handy.
 
+### Sample Login Code
 
+#### PHP
+```php
+<?php
+	$client = new SoapClient("https://my.interserver.net/api.php?wsdl");
+	$session_id = $client->api_login('username@site.com', 'password');
+	if (!strlen($session_id) > 0)
+		die("Failure!\nNo Session Returned - Bad Login Info\n");
+	echo "Success!\n Got Session ID: {$session_id}\n”;
+	// Rest of code logic would go here
+?>
+```
 
+#### Perl
+```perl
+ #!perl -w
+  use SOAP::Lite;
+  print SOAP::Lite                                             
+    -> uri('urn:myapi')
+    -> proxy('https://my.interserver.net/api.php?WSDL')
+    -> hi()                                                    
+    -> result;
+```
 
+#### Python
+```python
+from pysimplesoap.client import SoapClient
+client = SoapClient(wsdl="http://127.0.0.1:8000/webservices/sample/call/soap?WSDL",trace=False)
+response = client.AddIntegers(a=1,b=2)
+result = response['AddResult']
+print result
+```
+
+* * *
 
 ## Available VPS Server Types and Pricing
 
-We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the**get_vps_slice_types()**  function.
+We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the **get_vps_slice_types**  function.
 
-### Input Parameters for API **get_vps_slice_types()**
 
+### Input Parameters for API get_vps_slice_types
 <table>
 <col width="50%" />
 <col width="50%" />
@@ -49,8 +96,8 @@ We have several types of Servers available for use with VPS Hosting. You can get
 </tbody>
 </table>
 
-### Output Fields for API **get_vps_slice_types()**
 
+### Output Fields for API get_vps_slice_types
 <table>
 <col width="50%" />
 <col width="50%" />
@@ -78,7 +125,8 @@ We have several types of Servers available for use with VPS Hosting. You can get
 </tbody>
 </table>
 
-### Example API **get_vps_slice_types()** Output (as of 12/14/2014)
+
+### Example API get_vps_slice_types Output (as of 12/14/2014)
 
 <table>
 <col width="25%" />
@@ -138,11 +186,12 @@ We have several types of Servers available for use with VPS Hosting. You can get
 </table>
 
 
-## Getting the Available VPS Template Images
+## Getting the Available VPS OS Templates
 
-Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the **get_vps_templates()** function.
+Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.
 
-### Input Parameters for API **get_vps_templates()**
+
+### Input Parameters for API get_vps_templates
 
 <table>
 <col width="50%" />
@@ -160,7 +209,7 @@ Each Type of Virtualization has its own set of installable OS templates/images.�
 </table>
 
 
-### Output Fields for API **get_vps_templates()**
+### Output Fields for API get_vps_templates
 
 <table>
 <col width="50%" />
@@ -192,7 +241,7 @@ Each Type of Virtualization has its own set of installable OS templates/images.�
 </tr>
 <tr class="odd">
 <td align="left"><p>file</p></td>
-<td align="left"><p><em>the <strong>os</strong> field in <strong>buy_vps()</strong></em></p></td>
+<td align="left"><p><em>the <strong>os</strong> field in <strong>buy_vps</strong></em></p></td>
 </tr>
 <tr class="even">
 <td align="left"><p>title</p></td>
@@ -201,7 +250,7 @@ Each Type of Virtualization has its own set of installable OS templates/images.�
 </tbody>
 </table>
 
-### Example API **get_vps_templates()** Output (as of 12/14/2014)
+### Example API get_vps_templates Output (as of 12/14/2014)
 
 <table>
 <col width="14%" />
