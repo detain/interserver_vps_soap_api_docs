@@ -4,7 +4,7 @@
 Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software
 Version 1.0 – December 14, 2014
 
-[TOC]
+[ToC]
 
 ** **
 
@@ -33,9 +33,9 @@ To use the API you will need to first have an account with us.  You can sign up
 
 # We use a session based authentication system.   You will need to authenticate yourself with our system to get a Session ID.   Once you have a Session ID, you just pass that to prove your identity.  
 
-* To get a Session ID, you need to make a SOAP call to api\_login(\$login, \$password)  using the information you use to login to [https://my.interserver.net](https://my.interserver.net)
+* To get a Session ID, you need to make a SOAP call to api_login(\$login, \$password)  using the information you use to login to [https://my.interserver.net](https://my.interserver.net)
 
-* Sending an api\_login(\$login, \$password) call will attempt to authenticate your account and if successful will return a Session ID valid for at least several hours.    Subsequent commands and calls to the API will need this Session ID, so keep it handy.
+* Sending an api_login(\$login, \$password) call will attempt to authenticate your account and if successful will return a Session ID valid for at least several hours.    Subsequent commands and calls to the API will need this Session ID, so keep it handy.
 
 
 
@@ -43,9 +43,9 @@ To use the API you will need to first have an account with us.  You can sign up
 
 ## Available VPS Server Types and Pricing
 
-We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the**get\_vps\_slice\_types()**  function.
+We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the**get_vps_slice_types()**  function.
 
-### Input Parameters for API **get\_vps\_slice\_types()**
+### Input Parameters for API **get_vps_slice_types()**
 
 <table>
 <col width="50%" />
@@ -62,7 +62,7 @@ We have several types of Servers available for use with VPS Hosting. You can get
 </tbody>
 </table>
 
-### Output Fields for API **get\_vps\_slice\_types()**
+### Output Fields for API **get_vps_slice_types()**
 
 <table>
 <col width="50%" />
@@ -91,7 +91,7 @@ We have several types of Servers available for use with VPS Hosting. You can get
 </tbody>
 </table>
 
-### Example API **get\_vps\_slice\_types()** Output (as of 12/14/2014)
+### Example API **get_vps_slice_types()** Output (as of 12/14/2014)
 
 <table>
 <col width="25%" />
@@ -153,9 +153,9 @@ We have several types of Servers available for use with VPS Hosting. You can get
 
 ## Getting the Available VPS Template Images
 
-Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the **get\_vps\_templates()** function.
+Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the **get_vps_templates()** function.
 
-### Input Parameters for API **get\_vps\_templates()**
+### Input Parameters for API **get_vps_templates()**
 
 <table>
 <col width="50%" />
@@ -173,7 +173,7 @@ Each Type of Virtualization has its own set of installable OS templates/images.�
 </table>
 
 
-### Output Fields for API **get\_vps\_templates()**
+### Output Fields for API **get_vps_templates()**
 
 <table>
 <col width="50%" />
@@ -214,7 +214,7 @@ Each Type of Virtualization has its own set of installable OS templates/images.�
 </tbody>
 </table>
 
-### Example API **get\_vps\_templates()** Output (as of 12/14/2014)
+### Example API **get_vps_templates()** Output (as of 12/14/2014)
 
 <table>
 <col width="14%" />
@@ -3257,43 +3257,43 @@ Each Type of Virtualization has its own set of installable OS templates/images.�
 
 ## Function Reference
 
-* [**api\_login**](https://my1.interserver.net/api.php)
+* [api_login](https://my1.interserver.net/api.php)
 
-* [**api\_make\_payment**](https://my1.interserver.net/api.php)
+* [api_make_payment](https://my1.interserver.net/api.php)
 
-* [**api\_get\_paypal\_url**](https://my1.interserver.net/api.php)
+* [api_get_paypal_url](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_get\_service**](https://my1.interserver.net/api.php)
+* [api_vps_get_service](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_get\_services**](https://my1.interserver.net/api.php)
+* [api_vps_get_services](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_cancel\_service**](https://my1.interserver.net/api.php)
+* [api_vps_cancel_service](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_get\_client\_invoices**](https://my1.interserver.net/api.php)
+* [api_vps_get_client_invoices](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_queue\_stop**](https://my1.interserver.net/api.php)
+* [api_vps_queue_stop](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_queue\_start**](https://my1.interserver.net/api.php)
+* [api_vps_queue_start](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_queue\_restart**](https://my1.interserver.net/api.php)
+* [api_vps_queue_restart](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_get\_client\_unpaid\_invoices**](https://my1.interserver.net/api.php)
+* [api_vps_get_client_unpaid_invoices](https://my1.interserver.net/api.php)
 
-* [**get\_vps\_locations**](https://my1.interserver.net/api.php)
+* [get_vps_locations](https://my1.interserver.net/api.php)
 
-* [**get\_vps\_templates**](https://my1.interserver.net/api.php)
+* [get_vps_templates](https://my1.interserver.net/api.php)
 
-* [**get\_vps\_platforms**](https://my1.interserver.net/api.php)
+* [get_vps_platforms](https://my1.interserver.net/api.php)
 
-* [**api\_api\_validate\_buy\_vps**](https://my1.interserver.net/api.php)
+* [api_api_validate_buy_vps](https://my1.interserver.net/api.php)
 
-* [**api\_api\_buy\_vps**](https://my1.interserver.net/api.php)
+* [api_api_buy_vps](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_screenshot**](https://my1.interserver.net/api.php)
+* [api_vps_screenshot](https://my1.interserver.net/api.php)
 
-* [**api\_vps\_get\_server\_name**](https://my1.interserver.net/api.php)
+* [api_vps_get_server_name](https://my1.interserver.net/api.php)
 
-* [**get\_hostname**](https://my1.interserver.net/api.php)
+* [get_hostname](https://my1.interserver.net/api.php)
 
 
 
