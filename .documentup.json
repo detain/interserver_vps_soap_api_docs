@@ -1,9 +1,11 @@
 {
   "name": "Interserver VPS API Documentation",
+  "color": "#336699",
   "twitter": [
-    "interserver"
+	"interserver"
   ],
   "theme": "v1",
   "google_analytics": "UA-32229521-1",
+  "issues": "true",
   "travis": false
 }
