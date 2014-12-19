@@ -42,10 +42,10 @@ To use the API you will need to first have an account with us.Â  You can sign up
  #!perl -w
   use SOAP::Lite;
   print SOAP::Lite                                             
-    -> uri('urn:myapi')
-    -> proxy('https://my.interserver.net/api.php?WSDL')
-    -> api_login('username@site.com', 'password')                                                    
-    -> result;
+	-> uri('urn:myapi')
+	-> proxy('https://my.interserver.net/api.php?WSDL')
+	-> api_login('username@site.com', 'password')                                                    
+	-> result;
 ```
 
 #### Python
@@ -106,18 +106,76 @@ Each Type of Virtualization has its own set of installable OS templates/images.Â
 
 * [get_hostname](https://my1.interserver.net/api.php)
 
+
+
 ## get_vps_platforms_array
+Use this function to get a list of the various platforms available for ordering.
+The *platform* field is also needed to pass to the buy_vps functions.
+
+### Input Parameters
+No Input / Parameters to pass
+
+### Output
+
+Field Name|Description
+----------|-----------
+platform|Field used in the buy_vps functions
+name|Name of the VPS Platform
+
+### Example Output
+
+platform|name
+--------+----
+openvz|OpenVZ 
+kvm|KVM
+cloudkvm|Cloud
+
+
 ## get_vps_locations_array
+Use this function to get a list of the Locations available for ordering.   
+The *id* field is also needed to pass to the buy_vps functions. 
+
+### Input Parameters
+No Input / Parameters to pass
+
+### Output
+
+Field Name|Description
+----------|-----------
+id|Location ID used in the ordering process for referencing.
+name|Name of the location
+
+### Example Output
+
+id|name
+--+----
+1|Secaucus, NJ
+2|Los Angeles, CA
+
+
 ## get_login
+This function creates a session in our system which you will need to pass to most functions for authentication.
+
+### Input Parameters
+
+Parameter|Description
+---------|-----------
+username|The login/email adddress used to signup
+password|Your account password[1]
+
+[1]This is temporary and will be changed to an API specific key at some point   
+
+### Output
+String output, the Session ID if successfull, otherwise a blank string 
+
 
 ## get_vps_slice_types
 
 ### Input Parameters
-Parameter|Description
----------|-----------
-None|None
+No Input / Parameters to pass
 
-### Output Fields
+### Output 
+Outputs an associative array.
 Field Name|Description
 ----------|-----------
 name|This field contains a text description of the package/service
@@ -138,18 +196,97 @@ SSD OpenVZ VPS Slice|5|10.00|1
 LXC VPS Slice|9|6.00|0
 
 
-## get_vps_templates
+## api_validate_buy_vps
+Checks if the parameters for your order pass validation and let you know if there are any errors.   
+It will also give you information on the pricing breakdown. 
 
 ### Input Parameters
 
 Parameter|Description
 ---------|-----------
-None|None
+sid|Session ID from **api_login**
+os|File filed from **get_vps_templates**
+slices|Integer from 1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
+platform|platform field from the **get_vps_platforms_array**
+controlpanel|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
+period|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
+location|id field from the **get_vps_locations_array**
+version|os field from **get_vps_templates**
+hostname|Desired Hostname for the VPS
+coupon|Optional Coupon to pass
+rootpass|Desired Root Password (unused for windows, send a blank string) 
 
 ### Output Fields
 
+Field|Type|Description
+-----|----+-----------
+coupon_code|Integer|ID of the Coupon you passed if any
+service_cost|Float|Total cost of the order 
+slice_cost|Float|Cost of 1 slice based on your order parameters
+service_type|Integer|ID of the package you are ordering
+repeat_slice_cost|Float|Cost of 1 slice after the order (some coupons might discount only the signup not the monthly (or however often you choose to be billed) amount 
+original_slice_cost|Float|Cost of 1 slice without any discounts
+original_cost|Float|Total cost of the order before any discounts
+repeat_service_cost|Float|Amount that will be billed on future invoices each billig interval after the order 
+monthly_service_cost|Float|What the repeat service cost would be with a period of 1 month
+custid|Integer|Customer ID
+os|String|same field passed for input, if there were any errors in the validation it might be changed.
+slices|Integer|same field passed for input, if there were any errors in the validation it might be changed.
+platform|String|same field passed for input, if there were any errors in the validation it might be changed.
+controlpanel|String|same field passed for input, if there were any errors in the validation it might be changed.
+period|Integer|same field passed for input, if there were any errors in the validation it might be changed.
+location|Integer|same field passed for input, if there were any errors in the validation it might be changed.
+version|String|same field passed for input, if there were any errors in the validation it might be changed.
+hostname|String|same field passed for input, if there were any errors in the validation it might be changed.
+coupon|String|same field passed for input, if there were any errors in the validation it might be changed.
+rootpass|String|same field passed for input, if there were any errors in the validation it might be changed.
+status_text|String|descriptive text explaining errors if any, or related response from the order validation  
+status|String|'ok' or 'error'
+
+### Example Output
+
+
+## api_buy_vps
+Places a VPS order in our system.    These are the same parameters as api_validate_buy_vps.
+
+### Input Parameters
+
 Parameter|Description
 ---------|-----------
+sid|Session ID from **api_login**
+os|File filed from **get_vps_templates**
+slices|Integer from 1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
+platform|platform field from the **get_vps_platforms_array**
+controlpanel|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
+period|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
+location|id field from the **get_vps_locations_array**
+version|os field from **get_vps_templates**
+hostname|Desired Hostname for the VPS
+coupon|Optional Coupon to pass
+rootpass|Desired Root Password (unused for windows, send a blank string)
+
+### Output Fields
+
+Field|Type|Description
+-----|----+-----------
+status|String|'ok' or 'error'
+status_text|String|descriptive text explaining errors if any, or related response from the order  
+invoices|String|Invoices associated with th eorder
+cost|Float|Total cost of the order
+
+### Example Output
+
+
+## get_vps_templates
+
+### Input Parameters
+No Input / Parameters to pass
+
+### Output Fields
+Outputs an associative array.
+
+Field|Description
+-----|-----------
 type|matches above **type**
 bits|32 or 64 Bit OS
 os|Distribution / OS Name
