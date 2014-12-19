@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interserver VPS API Documentation</title>
     
-    <link rel="stylesheet" type="text/css" href="//documentup.com/stylesheets/themes/default.css">
+    <link rel="stylesheet" type="text/css" href="documentup.v1.css">
     
     
       <style type="text/css">
@@ -39,7 +39,7 @@
             kitId: 'hjp0pft',
             scriptTimeout: 3000
           };
-          var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+          var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
         })();
       </script>
     
@@ -361,11 +361,28 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tbody>
 </table>
 <h3 id='get_vps_platforms_array/example-output' id="example-output">Example Output</h3 id='get_vps_platforms_array/example-output'>
-<p>platform|name
---------+----
-openvz|OpenVZ 
-kvm|KVM
-cloudkvm|Cloud</p>
+<table>
+<thead>
+<tr>
+<th>platform</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>openvz</td>
+<td>OpenVZ </td>
+</tr>
+<tr>
+<td>kvm</td>
+<td>KVM</td>
+</tr>
+<tr>
+<td>cloudkvm</td>
+<td>Cloud</td>
+</tr>
+</tbody>
+</table>
 <h2 id='get_vps_locations_array' id="get_vps_locations_array">get_vps_locations_array</h2 id='get_vps_locations_array'>
 <p>Use this function to get a list of the Locations available for ordering.<br>The <em>id</em> field is also needed to pass to the buy_vps functions. </p>
 <h3 id='get_vps_locations_array/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_locations_array/input-parameters'>
@@ -390,10 +407,24 @@ cloudkvm|Cloud</p>
 </tbody>
 </table>
 <h3 id='get_vps_locations_array/example-output' id="example-output">Example Output</h3 id='get_vps_locations_array/example-output'>
-<p>id|name
---+----
-1|Secaucus, NJ
-2|Los Angeles, CA</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Secaucus, NJ</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Los Angeles, CA</td>
+</tr>
+</tbody>
+</table>
 <h2 id='get_login' id="get_login">get_login</h2 id='get_login'>
 <p>This function creates a session in our system which you will need to pass to most functions for authentication.</p>
 <h3 id='get_login/input-parameters' id="input-parameters">Input Parameters</h3 id='get_login/input-parameters'>
@@ -411,37 +442,102 @@ cloudkvm|Cloud</p>
 </tr>
 <tr>
 <td>password</td>
-<td>Your account password[1]</td>
+<td>Your account password</td>
 </tr>
 </tbody>
 </table>
-<p>[1]This is temporary and will be changed to an API specific key at some point   </p>
+<p>*This is temporary and will be changed to an API specific key at some point   </p>
 <h3 id='get_login/output' id="output">Output</h3 id='get_login/output'>
 <p>String output, the Session ID if successfull, otherwise a blank string </p>
 <h2 id='get_vps_slice_types' id="get_vps_slice_types">get_vps_slice_types</h2 id='get_vps_slice_types'>
 <h3 id='get_vps_slice_types/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_slice_types/input-parameters'>
 <p>No Input / Parameters to pass</p>
 <h3 id='get_vps_slice_types/output' id="output">Output</h3 id='get_vps_slice_types/output'>
-<p>Outputs an associative array.
-Field Name|Description
-----------|-----------
-name|This field contains a text description of the package/service
-type|Use to match up what OS Image templates are available for this VPS type.
-cost|The cost per unit/slice.
-buyable|If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase</p>
+<p>Outputs an associative array.</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>This field contains a text description of the package/service</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Use to match up what OS Image templates are available for this VPS type.</td>
+</tr>
+<tr>
+<td>cost</td>
+<td>The cost per unit/slice.</td>
+</tr>
+<tr>
+<td>buyable</td>
+<td>If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase</td>
+</tr>
+</tbody>
+</table>
 <h3 id='get_vps_slice_types/example-output' id="example-output">Example Output</h3 id='get_vps_slice_types/example-output'>
 <ul>
-<li>(as of 12/14/2014)
-name|type|cost|buyable
-----|----|----|-------
-OpenVZ VPS Slice|0|6.00|1
-KVM Windows VPS Slice|1|10.00|1
-KVM Linux VPS Slice|2|8.00|1
-Cloud KVM Windows VPS Slice|3|22.00|1
-Cloud KVM Linux VPS Slice|4|20.00|1
-SSD OpenVZ VPS Slice|5|10.00|1
-LXC VPS Slice|9|6.00|0</li>
+<li>(as of 12/14/2014)</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>cost</th>
+<th>buyable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenVZ VPS Slice</td>
+<td>0</td>
+<td>6.00</td>
+<td>1</td>
+</tr>
+<tr>
+<td>KVM Windows VPS Slice</td>
+<td>1</td>
+<td>10.00</td>
+<td>1</td>
+</tr>
+<tr>
+<td>KVM Linux VPS Slice</td>
+<td>2</td>
+<td>8.00</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cloud KVM Windows VPS Slice</td>
+<td>3</td>
+<td>22.00</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cloud KVM Linux VPS Slice</td>
+<td>4</td>
+<td>20.00</td>
+<td>1</td>
+</tr>
+<tr>
+<td>SSD OpenVZ VPS Slice</td>
+<td>5</td>
+<td>10.00</td>
+<td>1</td>
+</tr>
+<tr>
+<td>LXC VPS Slice</td>
+<td>9</td>
+<td>6.00</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 <h2 id='api_validate_buy_vps' id="api_validate_buy_vps">api_validate_buy_vps</h2 id='api_validate_buy_vps'>
 <p>Checks if the parameters for your order pass validation and let you know if there are any errors.<br>It will also give you information on the pricing breakdown. </p>
 <h3 id='api_validate_buy_vps/input-parameters' id="input-parameters">Input Parameters</h3 id='api_validate_buy_vps/input-parameters'>
@@ -500,29 +596,127 @@ LXC VPS Slice|9|6.00|0</li>
 </tbody>
 </table>
 <h3 id='api_validate_buy_vps/output-fields' id="output-fields">Output Fields</h3 id='api_validate_buy_vps/output-fields'>
-<p>Field|Type|Description
------|----+-----------
-coupon_code|Integer|ID of the Coupon you passed if any
-service_cost|Float|Total cost of the order 
-slice_cost|Float|Cost of 1 slice based on your order parameters
-service_type|Integer|ID of the package you are ordering
-repeat_slice_cost|Float|Cost of 1 slice after the order (some coupons might discount only the signup not the monthly (or however often you choose to be billed) amount 
-original_slice_cost|Float|Cost of 1 slice without any discounts
-original_cost|Float|Total cost of the order before any discounts
-repeat_service_cost|Float|Amount that will be billed on future invoices each billig interval after the order 
-monthly_service_cost|Float|What the repeat service cost would be with a period of 1 month
-custid|Integer|Customer ID
-os|String|same field passed for input, if there were any errors in the validation it might be changed.
-slices|Integer|same field passed for input, if there were any errors in the validation it might be changed.
-platform|String|same field passed for input, if there were any errors in the validation it might be changed.
-controlpanel|String|same field passed for input, if there were any errors in the validation it might be changed.
-period|Integer|same field passed for input, if there were any errors in the validation it might be changed.
-location|Integer|same field passed for input, if there were any errors in the validation it might be changed.
-version|String|same field passed for input, if there were any errors in the validation it might be changed.
-hostname|String|same field passed for input, if there were any errors in the validation it might be changed.
-coupon|String|same field passed for input, if there were any errors in the validation it might be changed.
-rootpass|String|same field passed for input, if there were any errors in the validation it might be changed.
-status_text|String|descriptive text explaining errors if any, or related response from the order validation<br>status|String|&#39;ok&#39; or &#39;error&#39;</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coupon_code</td>
+<td>Integer</td>
+<td>ID of the Coupon you passed if any</td>
+</tr>
+<tr>
+<td>service_cost</td>
+<td>Float</td>
+<td>Total cost of the order </td>
+</tr>
+<tr>
+<td>slice_cost</td>
+<td>Float</td>
+<td>Cost of 1 slice based on your order parameters</td>
+</tr>
+<tr>
+<td>service_type</td>
+<td>Integer</td>
+<td>ID of the package you are ordering</td>
+</tr>
+<tr>
+<td>repeat_slice_cost</td>
+<td>Float</td>
+<td>Cost of 1 slice after the order (some coupons might discount only the signup not the monthly (or however often you choose to be billed) amount </td>
+</tr>
+<tr>
+<td>original_slice_cost</td>
+<td>Float</td>
+<td>Cost of 1 slice without any discounts</td>
+</tr>
+<tr>
+<td>original_cost</td>
+<td>Float</td>
+<td>Total cost of the order before any discounts</td>
+</tr>
+<tr>
+<td>repeat_service_cost</td>
+<td>Float</td>
+<td>Amount that will be billed on future invoices each billig interval after the order </td>
+</tr>
+<tr>
+<td>monthly_service_cost</td>
+<td>Float</td>
+<td>What the repeat service cost would be with a period of 1 month</td>
+</tr>
+<tr>
+<td>custid</td>
+<td>Integer</td>
+<td>Customer ID</td>
+</tr>
+<tr>
+<td>os</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>slices</td>
+<td>Integer</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>controlpanel</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>period</td>
+<td>Integer</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>location</td>
+<td>Integer</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>coupon</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>rootpass</td>
+<td>String</td>
+<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+</tr>
+<tr>
+<td>status_text</td>
+<td>String</td>
+<td>descriptive text explaining errors if any, or related response from the order validation  </td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>&#39;ok&#39; or &#39;error&#39;</td>
+</tr>
+</tbody>
+</table>
 <h3 id='api_validate_buy_vps/example-output' id="example-output">Example Output</h3 id='api_validate_buy_vps/example-output'>
 <h2 id='api_buy_vps' id="api_buy_vps">api_buy_vps</h2 id='api_buy_vps'>
 <p>Places a VPS order in our system.    These are the same parameters as api_validate_buy_vps.</p>
@@ -582,11 +776,37 @@ status_text|String|descriptive text explaining errors if any, or related respons
 </tbody>
 </table>
 <h3 id='api_buy_vps/output-fields' id="output-fields">Output Fields</h3 id='api_buy_vps/output-fields'>
-<p>Field|Type|Description
------|----+-----------
-status|String|&#39;ok&#39; or &#39;error&#39;
-status_text|String|descriptive text explaining errors if any, or related response from the order<br>invoices|String|Invoices associated with th eorder
-cost|Float|Total cost of the order</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>&#39;ok&#39; or &#39;error&#39;</td>
+</tr>
+<tr>
+<td>status_text</td>
+<td>String</td>
+<td>descriptive text explaining errors if any, or related response from the order  </td>
+</tr>
+<tr>
+<td>invoices</td>
+<td>String</td>
+<td>Invoices associated with th eorder</td>
+</tr>
+<tr>
+<td>cost</td>
+<td>Float</td>
+<td>Total cost of the order</td>
+</tr>
+</tbody>
+</table>
 <h3 id='api_buy_vps/example-output' id="example-output">Example Output</h3 id='api_buy_vps/example-output'>
 <h2 id='get_vps_templates' id="get_vps_templates">get_vps_templates</h2 id='get_vps_templates'>
 <h3 id='get_vps_templates/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_templates/input-parameters'>

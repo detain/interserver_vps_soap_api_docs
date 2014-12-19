@@ -125,7 +125,7 @@ name|Name of the VPS Platform
 ### Example Output
 
 platform|name
---------+----
+--------|----
 openvz|OpenVZ 
 kvm|KVM
 cloudkvm|Cloud
@@ -148,7 +148,7 @@ name|Name of the location
 ### Example Output
 
 id|name
---+----
+--|----
 1|Secaucus, NJ
 2|Los Angeles, CA
 
@@ -161,11 +161,12 @@ This function creates a session in our system which you will need to pass to mos
 Parameter|Description
 ---------|-----------
 username|The login/email adddress used to signup
-password|Your account password[1]
+password|Your account password
 
-[1]This is temporary and will be changed to an API specific key at some point   
+*This is temporary and will be changed to an API specific key at some point   
 
 ### Output
+
 String output, the Session ID if successfull, otherwise a blank string 
 
 
@@ -175,7 +176,9 @@ String output, the Session ID if successfull, otherwise a blank string
 No Input / Parameters to pass
 
 ### Output 
+
 Outputs an associative array.
+
 Field Name|Description
 ----------|-----------
 name|This field contains a text description of the package/service
@@ -184,7 +187,9 @@ cost|The cost per unit/slice.
 buyable|If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase
 
 ### Example Output
+
 * (as of 12/14/2014)
+
 name|type|cost|buyable
 ----|----|----|-------
 OpenVZ VPS Slice|0|6.00|1
@@ -197,6 +202,7 @@ LXC VPS Slice|9|6.00|0
 
 
 ## api_validate_buy_vps
+
 Checks if the parameters for your order pass validation and let you know if there are any errors.   
 It will also give you information on the pricing breakdown. 
 
@@ -219,7 +225,7 @@ rootpass|Desired Root Password (unused for windows, send a blank string)
 ### Output Fields
 
 Field|Type|Description
------|----+-----------
+-----|----|-----------
 coupon_code|Integer|ID of the Coupon you passed if any
 service_cost|Float|Total cost of the order 
 slice_cost|Float|Cost of 1 slice based on your order parameters
@@ -247,6 +253,7 @@ status|String|'ok' or 'error'
 
 
 ## api_buy_vps
+
 Places a VPS order in our system.    These are the same parameters as api_validate_buy_vps.
 
 ### Input Parameters
@@ -268,7 +275,7 @@ rootpass|Desired Root Password (unused for windows, send a blank string)
 ### Output Fields
 
 Field|Type|Description
------|----+-----------
+-----|----|-----------
 status|String|'ok' or 'error'
 status_text|String|descriptive text explaining errors if any, or related response from the order  
 invoices|String|Invoices associated with th eorder
@@ -280,9 +287,11 @@ cost|Float|Total cost of the order
 ## get_vps_templates
 
 ### Input Parameters
+
 No Input / Parameters to pass
 
 ### Output Fields
+
 Outputs an associative array.
 
 Field|Description
