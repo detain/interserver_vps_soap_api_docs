@@ -72,7 +72,7 @@ None|None
 
 ### Output Fields for API get_vps_slice_types
 Field Name|Description
---------------|---------------
+----------|-----------
 name|This field contains a text description of the package/service
 type|Use to match up what OS Image templates are available for this VPS type.
 cost|The cost per unit/slice.
@@ -82,7 +82,7 @@ buyable|If the service be purchased now<br /> 1 = Available for purchase.<br /> 
 ### Example API get_vps_slice_types Output (as of 12/14/2014)
 
 name|type|cost|buyable
---------|--------|--------|-----------
+----|----|----|-------
 OpenVZ VPS Slice|0|6.00|1
 KVM Windows VPS Slice|1|10.00|1
 KVM Linux VPS Slice|2|8.00|1
@@ -119,7 +119,7 @@ title|Full template name including OS / Version/ Architecture information.
 ### Example API get_vps_templates Output (as of 12/14/2014)
 
 type|virtulization|bits|os|version|file|title
---------|-----------------|--------|------|-----------|--------|---------
+----|-------------|----|--|-------|----|-----
 0|OpenVZ|64|altlinux|5.1|altlinux-5.1-x86_64.tar.gz|Altlinux 5.1 64bit (contrib)
 0|OpenVZ|32|altlinux|5.1|altlinux-5.1-i586.tar.gz|Altlinux 5.1 32bit (contrib)
 0|OpenVZ|64|altlinux|p6 20120321|altlinux-p6-20120321-x86_64.tar.gz|Altlinux p6 20120321 64bit (contrib)
