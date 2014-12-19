@@ -19,9 +19,9 @@ To use the API you will need to first have an account with us.  You can sign up
 
 * We use a session based authentication system.   You will need to authenticate yourself with our system to get a Session ID.   Once you have a Session ID, you just pass that to prove your identity.  
 
-* To get a Session ID, you need to make a SOAP call to api_login(\$login, \$password)  using the information you use to login to [https://my.interserver.net](https://my.interserver.net)
+* To get a Session ID, you need to make a SOAP call to api_login(login, password)  using the information you use to login to [https://my.interserver.net](https://my.interserver.net)
 
-* Sending an api_login(\$login, \$password) call will attempt to authenticate your account and if successful will return a Session ID valid for at least several hours.    Subsequent commands and calls to the API will need this Session ID, so keep it handy.
+* Sending an api_login(login, password) call will attempt to authenticate your account and if successful will return a Session ID valid for at least several hours.    Subsequent commands and calls to the API will need this Session ID, so keep it handy.
 
 ### Sample Login Code
 
@@ -44,7 +44,7 @@ To use the API you will need to first have an account with us.  You can sign up
   print SOAP::Lite                                             
     -> uri('urn:myapi')
     -> proxy('https://my.interserver.net/api.php?WSDL')
-    -> hi()                                                    
+    -> api_login('username@site.com', 'password')                                                    
     -> result;
 ```
 
@@ -52,7 +52,7 @@ To use the API you will need to first have an account with us.  You can sign up
 ```python
 from pysimplesoap.client import SoapClient
 client = SoapClient(wsdl="https://my.interserver.net/api.php?WSDL",trace=False)
-response = client.api_login(username, password)
+response = client.api_login('username@site.com', 'password')
 print response
 ```
 
@@ -62,15 +62,62 @@ print response
 
 We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the **get_vps_slice_types**  function.
 
+## Getting the Available VPS OS Templates
 
-### Input Parameters for API get_vps_slice_types
+Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.
 
+## Function Reference
+
+* [api_login](https://my1.interserver.net/api.php)
+
+* [api_make_payment](https://my1.interserver.net/api.php)
+
+* [api_get_paypal_url](https://my1.interserver.net/api.php)
+
+* [api_vps_get_service](https://my1.interserver.net/api.php)
+
+* [api_vps_get_services](https://my1.interserver.net/api.php)
+
+* [api_vps_cancel_service](https://my1.interserver.net/api.php)
+
+* [api_vps_get_client_invoices](https://my1.interserver.net/api.php)
+
+* [api_vps_queue_stop](https://my1.interserver.net/api.php)
+
+* [api_vps_queue_start](https://my1.interserver.net/api.php)
+
+* [api_vps_queue_restart](https://my1.interserver.net/api.php)
+
+* [api_vps_get_client_unpaid_invoices](https://my1.interserver.net/api.php)
+
+* [get_vps_locations](https://my1.interserver.net/api.php)
+
+* [get_vps_templates](https://my1.interserver.net/api.php)
+
+* [get_vps_platforms](https://my1.interserver.net/api.php)
+
+* [api_api_validate_buy_vps](https://my1.interserver.net/api.php)
+
+* [api_api_buy_vps](https://my1.interserver.net/api.php)
+
+* [api_vps_screenshot](https://my1.interserver.net/api.php)
+
+* [api_vps_get_server_name](https://my1.interserver.net/api.php)
+
+* [get_hostname](https://my1.interserver.net/api.php)
+
+## get_vps_platforms_array
+## get_vps_locations_array
+## get_login
+
+## get_vps_slice_types
+
+### Input Parameters
 Parameter|Description
 ---------|-----------
 None|None
 
-
-### Output Fields for API get_vps_slice_types
+### Output Fields
 Field Name|Description
 ----------|-----------
 name|This field contains a text description of the package/service
@@ -78,9 +125,8 @@ type|Use to match up what OS Image templates are available for this VPS type.
 cost|The cost per unit/slice.
 buyable|If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase
 
-
-### Example API get_vps_slice_types Output (as of 12/14/2014)
-
+### Example Output
+* (as of 12/14/2014)
 name|type|cost|buyable
 ----|----|----|-------
 OpenVZ VPS Slice|0|6.00|1
@@ -92,19 +138,15 @@ SSD OpenVZ VPS Slice|5|10.00|1
 LXC VPS Slice|9|6.00|0
 
 
-## Getting the Available VPS OS Templates
+## get_vps_templates
 
-Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.
-
-
-### Input Parameters for API get_vps_templates
+### Input Parameters
 
 Parameter|Description
 ---------|-----------
 None|None
 
-
-### Output Fields for API get_vps_templates
+### Output Fields
 
 Parameter|Description
 ---------|-----------
@@ -115,8 +157,7 @@ version|Distribution / OS Version
 file|the **os** field in **buy_vps**
 title|Full template name including OS / Version/ Architecture information.
 
-
-### Example API get_vps_templates Output (as of 12/14/2014)
+### Example Output
 
 type|virtulization|bits|os|version|file|title
 ----|-------------|----|--|-------|----|-----
@@ -455,51 +496,6 @@ type|virtulization|bits|os|version|file|title
 5|SSD OpenVZ|32|ubuntu|6.06 minimal|ubuntu-6.06-i386-minimal.tar.gz|Ubuntu 6.06 minimal 32bit (contrib)
 9|LXC|64|ubuntu|14.04|ubuntu-trusty-amd64|Ubuntu 14.04 64bit
 9|LXC|32|ubuntu|14.04|ubuntu-trusty-i3864|Ubuntu 14.04 32bit
-
-
-
-
-## Function Reference
-
-* [api_login](https://my1.interserver.net/api.php)
-
-* [api_make_payment](https://my1.interserver.net/api.php)
-
-* [api_get_paypal_url](https://my1.interserver.net/api.php)
-
-* [api_vps_get_service](https://my1.interserver.net/api.php)
-
-* [api_vps_get_services](https://my1.interserver.net/api.php)
-
-* [api_vps_cancel_service](https://my1.interserver.net/api.php)
-
-* [api_vps_get_client_invoices](https://my1.interserver.net/api.php)
-
-* [api_vps_queue_stop](https://my1.interserver.net/api.php)
-
-* [api_vps_queue_start](https://my1.interserver.net/api.php)
-
-* [api_vps_queue_restart](https://my1.interserver.net/api.php)
-
-* [api_vps_get_client_unpaid_invoices](https://my1.interserver.net/api.php)
-
-* [get_vps_locations](https://my1.interserver.net/api.php)
-
-* [get_vps_templates](https://my1.interserver.net/api.php)
-
-* [get_vps_platforms](https://my1.interserver.net/api.php)
-
-* [api_api_validate_buy_vps](https://my1.interserver.net/api.php)
-
-* [api_api_buy_vps](https://my1.interserver.net/api.php)
-
-* [api_vps_screenshot](https://my1.interserver.net/api.php)
-
-* [api_vps_get_server_name](https://my1.interserver.net/api.php)
-
-* [get_hostname](https://my1.interserver.net/api.php)
-
-
 
 ## Feedback and Suggestions
 
