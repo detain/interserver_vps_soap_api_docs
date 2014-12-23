@@ -42,10 +42,10 @@ To use the API you will need to first have an account with us.  You can sign up
 ```perl
  #!perl -w
   use SOAP::Lite;
-  print SOAP::Lite                                             
+  print SOAP::Lite
 	-> uri('urn:myapi')
-	-> proxy('https://my.interserver.net/api.php?WSDL')
-	-> api_login('username@site.com', 'password')                                                    
+	-> proxy('https://my.interserver.net/api.php?wsdl')
+	-> api_login('username@site.com', 'password')
 	-> result;
 ```
 
@@ -67,40 +67,43 @@ We have several types of Servers available for use with VPS Hosting. You can get
 
 Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.
 
-## Undocumented Functions
+## Function Reference
+
+### Undocumented Functions
 
 Still need to document these:
 
- *api_make_payment
- *api_get_paypal_url
- *api_vps_get_service
- *api_vps_get_services
- *api_vps_cancel_service
- *api_vps_get_client_invoices
- *api_vps_queue_stop
- *api_vps_queue_start
- *api_vps_queue_restart
- *api_vps_get_client_unpaid_invoices
- *api_vps_screenshot
- *api_vps_get_server_name
- *get_hostname
+
+* api_make_payment
+* api_get_paypal_url
+* api_vps_get_service
+* api_vps_get_services
+* api_vps_cancel_service
+* api_vps_get_client_invoices
+* api_vps_queue_stop
+* api_vps_queue_start
+* api_vps_queue_restart
+* api_vps_get_client_unpaid_invoices
+* api_vps_screenshot
+* api_vps_get_server_name
+* get_hostname
 
 
-## get_vps_platforms_array
+### get_vps_platforms_array
 Use this function to get a list of the various platforms available for ordering.
 The *platform* field is also needed to pass to the buy_vps functions.
 
-### Input Parameters
+#### Input Parameters
 No Input / Parameters to pass
 
-### Output
+#### Output
 
 Field Name|Type|Description
 ----------|----|-----------
 platform|String|Field used in the buy_vps functions
 name|String|Name of the VPS Platform
 
-### Example Output
+#### Example Output
 
 platform|name
 --------|----
@@ -109,21 +112,21 @@ kvm|KVM
 cloudkvm|Cloud
 
 
-## get_vps_locations_array
-Use this function to get a list of the Locations available for ordering.   
-The *id* field is also needed to pass to the buy_vps functions. 
+### get_vps_locations_array
+Use this function to get a list of the Locations available for ordering.
+The *id* field is also needed to pass to the buy_vps functions.
 
-### Input Parameters
+#### Input Parameters
 No Input / Parameters to pass
 
-### Output
+#### Output
 
 Field Name|Type|Description
 ----------|----|-----------
 id|Integer|Location ID used in the ordering process for referencing.
 name|String|Name of the location
 
-### Example Output
+#### Example Output
 
 id|name
 --|----
@@ -131,10 +134,10 @@ id|name
 2|Los Angeles, CA
 
 
-## get_login
+### get_login
 This function creates a session in our system which you will need to pass to most functions for authentication.
 
-### Input Parameters
+#### Input Parameters
 
 Parameter|Type|Description
 ---------|----|-----------
@@ -143,17 +146,17 @@ password|String|Your account password
 
 *This is temporary and will be changed to an API specific key at some point   
 
-### Output
+#### Output
 
 String output, the Session ID if successfull, otherwise a blank string 
 
 
-## get_vps_slice_types
+### get_vps_slice_types
 
-### Input Parameters
+#### Input Parameters
 No Input / Parameters to pass
 
-### Output 
+#### Output 
 
 Outputs an associative array.
 
@@ -164,7 +167,7 @@ type|Integer|Use to match up what OS Image templates are available for this VPS 
 cost|Float|The cost per unit/slice.
 buyable|Integer|If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase
 
-### Example Output
+#### Example Output
 
 * (as of 12/14/2014)
 
@@ -179,12 +182,12 @@ SSD OpenVZ VPS Slice|5|10.00|1
 LXC VPS Slice|9|6.00|0
 
 
-## api_validate_buy_vps
+### api_validate_buy_vps
 
-Checks if the parameters for your order pass validation and let you know if there are any errors.   
-It will also give you information on the pricing breakdown. 
+Checks if the parameters for your order pass validation and let you know if there are any errors.
+It will also give you information on the pricing breakdown.
 
-### Input Parameters
+#### Input Parameters
 
 Parameter|Type|Description
 ---------|----|-----------
@@ -193,14 +196,14 @@ os|String|File filed from **get_vps_templates**
 slices|Integer|1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
 platform|String|platform field from the **get_vps_platforms_array**
 controlpanel|String|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
-period|Integer|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
+period|Integer|1-36, How frequently to be billed in months.   Some discounts as given based on the period.
 location|Integer|id field from the **get_vps_locations_array**
 version|String|os field from **get_vps_templates**
 hostname|String|Desired Hostname for the VPS
 coupon|String|Optional Coupon to pass
 rootpass|String|Desired Root Password (unused for windows, send a blank string) 
 
-### Output Fields
+#### Output Fields
 
 Field|Type|Description
 -----|----|-----------
@@ -211,30 +214,55 @@ service_type|Integer|ID of the package you are ordering
 repeat_slice_cost|Float|Cost of 1 slice after the order (some coupons might discount only the signup not the monthly (or however often you choose to be billed) amount 
 original_slice_cost|Float|Cost of 1 slice without any discounts
 original_cost|Float|Total cost of the order before any discounts
-repeat_service_cost|Float|Amount that will be billed on future invoices each billig interval after the order 
+repeat_service_cost|Float|Amount that will be billed on future invoices each billig interval after the order
 monthly_service_cost|Float|What the repeat service cost would be with a period of 1 month
 custid|Integer|Customer ID
-os|String|same field passed for input, if there were any errors in the validation it might be changed.
-slices|Integer|same field passed for input, if there were any errors in the validation it might be changed.
-platform|String|same field passed for input, if there were any errors in the validation it might be changed.
-controlpanel|String|same field passed for input, if there were any errors in the validation it might be changed.
-period|Integer|same field passed for input, if there were any errors in the validation it might be changed.
-location|Integer|same field passed for input, if there were any errors in the validation it might be changed.
-version|String|same field passed for input, if there were any errors in the validation it might be changed.
-hostname|String|same field passed for input, if there were any errors in the validation it might be changed.
-coupon|String|same field passed for input, if there were any errors in the validation it might be changed.
-rootpass|String|same field passed for input, if there were any errors in the validation it might be changed.
-status_text|String|descriptive text explaining errors if any, or related response from the order validation  
+os|String|Input fields modified as needed for validation.
+slices|Integer|Input fields modified as needed for validation.
+platform|String|Input fields modified as needed for validation.
+controlpanel|String|Input fields modified as needed for validation.
+period|Integer|Input fields modified as needed for validation.
+location|Integer|Input fields modified as needed for validation.
+version|String|Input fields modified as needed for validation.
+hostname|String|Input fields modified as needed for validation.
+coupon|String|Input fields modified as needed for validation.
+rootpass|String|Input fields modified as needed for validation.
+status_text|String|descriptive text explaining errors if any, or related response from the order validation
 status|String|'ok' or 'error'
 
-### Example Output
+#### Example Code
 
+##### PHP
+```php
+<?php
+	$client = new SoapClient("https://my.interserver.net/api.php?wsdl");
+	$sid = $client->api_login('username@site.com', 'password');
+	if (!strlen($sid) > 0)
+		die("Failure!\nNo Session Returned - Bad Login Info\n");
+	$os='ubuntu-14.04-x86_64.tar.gz';	// from $templates[]['file']
+	$slices=1;							// 1-16
+	$platform='kvm';					// from $platforms[]['platform'] ?
+	$controlpanel='none';				// none, cpanel, or da
+	$period=1;							// 1-anything really
+	$location=1;						// from $locations[]['id']
+	$version='ubuntu';					// from $templates[]['os']
+	$hostname='vpsapi.test.com';
+	$coupon='';
+	$rootpass='apitest';
+	$response = $client->api_api_validate_buy_vps($sid, $os, $slices, $platform, $controlpanel, $period, $location, $version, $hostname, $coupon, $rootpass);
+    if ($response['status'] != 'ok')
+		die("Errors In Order\n{$errors}\n");
+	echo "The order parameters are valid\n";
+    echo "This order would cost {$response['service_cost']}\n";
+	// Rest of code logic would go here
+?>
+```
 
-## api_buy_vps
+### api_buy_vps
 
 Places a VPS order in our system.    These are the same parameters as api_validate_buy_vps.
 
-### Input Parameters
+#### Input Parameters
 
 Parameter|Type|Description
 ---------|----|-----------
@@ -243,32 +271,59 @@ os|String|File filed from **get_vps_templates**
 slices|Integer|1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
 platform|String|platform field from the **get_vps_platforms_array**
 controlpanel|String|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
-period|Integer|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
+period|Integer|1-36, How frequently to be billed in months.   Some discounts as given based on the period.
 location|Integer|id field from the **get_vps_locations_array**
 version|String|os field from **get_vps_templates**
 hostname|String|Desired Hostname for the VPS
 coupon|String|Optional Coupon to pass
 rootpass|String|Desired Root Password (unused for windows, send a blank string)
 
-### Output Fields
+#### Output Fields
 
 Field|Type|Description
 -----|----|-----------
 status|String|'ok' or 'error'
-status_text|String|descriptive text explaining errors if any, or related response from the order  
+status_text|String|descriptive text explaining errors if any, or related response from the order
 invoices|String|Invoices associated with th eorder
 cost|Float|Total cost of the order
 
-### Example Output
+#### Example Code
 
+##### PHP
+```php
+<?php
+	$client = new SoapClient("https://my.interserver.net/api.php?wsdl");
+	$sid = $client->api_login('username@site.com', 'password');
+	if (!strlen($sid) > 0)
+		die("Failure!\nNo Session Returned - Bad Login Info\n");
+	$os='ubuntu-14.04-x86_64.tar.gz';	// from $templates[]['file']
+	$slices=1;							// 1-16
+	$platform='kvm';					// from $platforms[]['platform'] ?
+	$controlpanel='none';				// none, cpanel, or da
+	$period=1;							// 1-anything really
+	$location=1;						// from $locations[]['id']
+	$version='ubuntu';					// from $templates[]['os']
+	$hostname='vpsapi.test.com';
+	$coupon='';
+	$rootpass='apitest';
+	$response = $client->api_api_buy_vps($sid, $os, $slices, $platform, $controlpanel, $period, $location, $version, $hostname, $coupon, $rootpass);
+    if ($response['status'] != 'ok')
+		die("Errors In Order\n{$errors}\n");
+    echo "Order Placed\n";
+    echo "VPS ID: {$response['status_text']}\n";
+    echo "Cost: {$response['cost']\n";
+    echo "Invoices: {$response['invoices']}\n";
+	// Rest of code logic would go here
+?>
+```
 
-## get_vps_templates
+### get_vps_templates
 
-### Input Parameters
+#### Input Parameters
 
 No Input / Parameters to pass
 
-### Output Fields
+#### Output Fields
 
 Outputs an associative array.
 
@@ -281,7 +336,7 @@ version|String|Distribution / OS Version
 file|String|the **os** field in **buy_vps**
 title|String|Full template name including OS / Version/ Architecture information.
 
-### Example Output
+#### Example Output
 
 type|virtulization|bits|os|version|file|title
 ----|-------------|----|--|-------|----|-----
