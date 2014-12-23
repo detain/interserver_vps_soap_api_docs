@@ -2,7 +2,8 @@
 # InterServer VPS SOAP API Documentation
 
 Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software
-Version 0.9.0 – December 15, 2014 - ©2014 InterServer
+
+Version 0.9.1 ©2014 InterServer
 
 
 ## Connecting To the API
@@ -66,46 +67,23 @@ We have several types of Servers available for use with VPS Hosting. You can get
 
 Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.
 
-## Function Reference
+## Undocumented Functions
 
-* [api_login](https://my1.interserver.net/api.php)
+Still need to document these:
 
-* [api_make_payment](https://my1.interserver.net/api.php)
-
-* [api_get_paypal_url](https://my1.interserver.net/api.php)
-
-* [api_vps_get_service](https://my1.interserver.net/api.php)
-
-* [api_vps_get_services](https://my1.interserver.net/api.php)
-
-* [api_vps_cancel_service](https://my1.interserver.net/api.php)
-
-* [api_vps_get_client_invoices](https://my1.interserver.net/api.php)
-
-* [api_vps_queue_stop](https://my1.interserver.net/api.php)
-
-* [api_vps_queue_start](https://my1.interserver.net/api.php)
-
-* [api_vps_queue_restart](https://my1.interserver.net/api.php)
-
-* [api_vps_get_client_unpaid_invoices](https://my1.interserver.net/api.php)
-
-* [get_vps_locations](https://my1.interserver.net/api.php)
-
-* [get_vps_templates](https://my1.interserver.net/api.php)
-
-* [get_vps_platforms](https://my1.interserver.net/api.php)
-
-* [api_api_validate_buy_vps](https://my1.interserver.net/api.php)
-
-* [api_api_buy_vps](https://my1.interserver.net/api.php)
-
-* [api_vps_screenshot](https://my1.interserver.net/api.php)
-
-* [api_vps_get_server_name](https://my1.interserver.net/api.php)
-
-* [get_hostname](https://my1.interserver.net/api.php)
-
+ *api_make_payment
+ *api_get_paypal_url
+ *api_vps_get_service
+ *api_vps_get_services
+ *api_vps_cancel_service
+ *api_vps_get_client_invoices
+ *api_vps_queue_stop
+ *api_vps_queue_start
+ *api_vps_queue_restart
+ *api_vps_get_client_unpaid_invoices
+ *api_vps_screenshot
+ *api_vps_get_server_name
+ *get_hostname
 
 
 ## get_vps_platforms_array
@@ -117,10 +95,10 @@ No Input / Parameters to pass
 
 ### Output
 
-Field Name|Description
-----------|-----------
-platform|Field used in the buy_vps functions
-name|Name of the VPS Platform
+Field Name|Type|Description
+----------|----|-----------
+platform|String|Field used in the buy_vps functions
+name|String|Name of the VPS Platform
 
 ### Example Output
 
@@ -140,10 +118,10 @@ No Input / Parameters to pass
 
 ### Output
 
-Field Name|Description
-----------|-----------
-id|Location ID used in the ordering process for referencing.
-name|Name of the location
+Field Name|Type|Description
+----------|----|-----------
+id|Integer|Location ID used in the ordering process for referencing.
+name|String|Name of the location
 
 ### Example Output
 
@@ -158,10 +136,10 @@ This function creates a session in our system which you will need to pass to mos
 
 ### Input Parameters
 
-Parameter|Description
----------|-----------
-username|The login/email adddress used to signup
-password|Your account password
+Parameter|Type|Description
+---------|----|-----------
+username|String|The login/email adddress used to signup
+password|String|Your account password
 
 *This is temporary and will be changed to an API specific key at some point   
 
@@ -179,12 +157,12 @@ No Input / Parameters to pass
 
 Outputs an associative array.
 
-Field Name|Description
-----------|-----------
-name|This field contains a text description of the package/service
-type|Use to match up what OS Image templates are available for this VPS type.
-cost|The cost per unit/slice.
-buyable|If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase
+Field Name|Type|Description
+----------|----|-----------
+name|String|This field contains a text description of the package/service
+type|Integer|Use to match up what OS Image templates are available for this VPS type.
+cost|Float|The cost per unit/slice.
+buyable|Integer|If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase
 
 ### Example Output
 
@@ -208,19 +186,19 @@ It will also give you information on the pricing breakdown.
 
 ### Input Parameters
 
-Parameter|Description
----------|-----------
-sid|Session ID from **api_login**
-os|File filed from **get_vps_templates**
-slices|Integer from 1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
-platform|platform field from the **get_vps_platforms_array**
-controlpanel|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
-period|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
-location|id field from the **get_vps_locations_array**
-version|os field from **get_vps_templates**
-hostname|Desired Hostname for the VPS
-coupon|Optional Coupon to pass
-rootpass|Desired Root Password (unused for windows, send a blank string) 
+Parameter|Type|Description
+---------|----|-----------
+sid|String|Session ID from **api_login**
+os|String|File filed from **get_vps_templates**
+slices|Integer|1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
+platform|String|platform field from the **get_vps_platforms_array**
+controlpanel|String|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
+period|Integer|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
+location|Integer|id field from the **get_vps_locations_array**
+version|String|os field from **get_vps_templates**
+hostname|String|Desired Hostname for the VPS
+coupon|String|Optional Coupon to pass
+rootpass|String|Desired Root Password (unused for windows, send a blank string) 
 
 ### Output Fields
 
@@ -258,19 +236,19 @@ Places a VPS order in our system.    These are the same parameters as api_valida
 
 ### Input Parameters
 
-Parameter|Description
----------|-----------
-sid|Session ID from **api_login**
-os|File filed from **get_vps_templates**
-slices|Integer from 1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
-platform|platform field from the **get_vps_platforms_array**
-controlpanel|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
-period|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
-location|id field from the **get_vps_locations_array**
-version|os field from **get_vps_templates**
-hostname|Desired Hostname for the VPS
-coupon|Optional Coupon to pass
-rootpass|Desired Root Password (unused for windows, send a blank string)
+Parameter|Type|Description
+---------|----|-----------
+sid|String|Session ID from **api_login**
+os|String|File filed from **get_vps_templates**
+slices|Integer|1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)
+platform|String|platform field from the **get_vps_platforms_array**
+controlpanel|String|none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS
+period|Integer|1-36, How frequently to be billed in months.   Some discounts as given based on the period.   
+location|Integer|id field from the **get_vps_locations_array**
+version|String|os field from **get_vps_templates**
+hostname|String|Desired Hostname for the VPS
+coupon|String|Optional Coupon to pass
+rootpass|String|Desired Root Password (unused for windows, send a blank string)
 
 ### Output Fields
 
@@ -294,14 +272,14 @@ No Input / Parameters to pass
 
 Outputs an associative array.
 
-Field|Description
------|-----------
-type|matches above **type**
-bits|32 or 64 Bit OS
-os|Distribution / OS Name
-version|Distribution / OS Version
-file|the **os** field in **buy_vps**
-title|Full template name including OS / Version/ Architecture information.
+Field|Type|Description
+-----|----|-----------
+type|Integer|matches above **type**
+bits|Integer|32 or 64 Bit OS
+os|String|Distribution / OS Name
+version|String|Distribution / OS Version
+file|String|the **os** field in **buy_vps**
+title|String|Full template name including OS / Version/ Architecture information.
 
 ### Example Output
 
