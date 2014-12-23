@@ -85,7 +85,7 @@
         </li>
       
         <li>
-          <a href="#function-reference">Function Reference</a>
+          <a href="#undocumented-functions">Undocumented Functions</a>
           
         </li>
       
@@ -239,6 +239,16 @@
       
     </ul>
     
+      <div class="extra" id="github">
+        <a href="https://github.com/detain/interserver_vps_soap_api_docs">Source on GitHub</a>
+      </div>
+      
+        <div class="extra" id="github-issues">
+          <a href="https://github.com/detain/interserver_vps_soap_api_docs/issues">Issues</a>
+        </div>
+      
+      
+    
     
       <div class="extra twitter">
         <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=interserver&show_count=false"></iframe>
@@ -247,9 +257,11 @@
   </div>
   <div id="content">
     
+      <a href="https://github.com/detain/interserver_vps_soap_api_docs" id="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    
     <h1 id="interserver-vps-soap-api-documentation">InterServer VPS SOAP API Documentation</h1>
-<p>Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software
-Version 0.9.0 – December 15, 2014 - ©2014 InterServer</p>
+<p>Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software</p>
+<p>Version 0.9.1 ©2014 InterServer</p>
 <h2 id='connecting-to-the-api' id="connecting-to-the-api">Connecting To the API</h2 id='connecting-to-the-api'>
 <h3 id='connecting-to-the-api/prerequisites-and-api-urls' id="prerequisites-and-api-urls">Prerequisites and API URLs</h3 id='connecting-to-the-api/prerequisites-and-api-urls'>
 <p>To use the API you will need to first have an account with us.  You can sign up for an account at <a href="http://my.interserver.net/"><a href="http://my.interserver.net/">http://my.interserver.net/</a></a></p>
@@ -295,47 +307,21 @@ response = client.api_login(<span class="string">'username@site.com'</span>, <sp
 <p>We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the <strong>get_vps_slice_types</strong>  function.</p>
 <h2 id='getting-the-available-vps-os-templates' id="getting-the-available-vps-os-templates">Getting the Available VPS OS Templates</h2 id='getting-the-available-vps-os-templates'>
 <p>Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.</p>
-<h2 id='function-reference' id="function-reference">Function Reference</h2 id='function-reference'>
-<ul>
-<li><p><a href="https://my1.interserver.net/api.php">api_login</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_make_payment</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_get_paypal_url</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_get_service</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_get_services</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_cancel_service</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_get_client_invoices</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_queue_stop</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_queue_start</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_queue_restart</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_get_client_unpaid_invoices</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">get_vps_locations</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">get_vps_templates</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">get_vps_platforms</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_api_validate_buy_vps</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_api_buy_vps</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_screenshot</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">api_vps_get_server_name</a></p>
-</li>
-<li><p><a href="https://my1.interserver.net/api.php">get_hostname</a></p>
-</li>
-</ul>
+<h2 id='undocumented-functions' id="undocumented-functions">Undocumented Functions</h2 id='undocumented-functions'>
+<p>Still need to document these:</p>
+<p> <em>api_make_payment
+ </em>api_get_paypal_url
+ <em>api_vps_get_service
+ </em>api_vps_get_services
+ <em>api_vps_cancel_service
+ </em>api_vps_get_client_invoices
+ <em>api_vps_queue_stop
+ </em>api_vps_queue_start
+ <em>api_vps_queue_restart
+ </em>api_vps_get_client_unpaid_invoices
+ <em>api_vps_screenshot
+ </em>api_vps_get_server_name
+ *get_hostname</p>
 <h2 id='get_vps_platforms_array' id="get_vps_platforms_array">get_vps_platforms_array</h2 id='get_vps_platforms_array'>
 <p>Use this function to get a list of the various platforms available for ordering.
 The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
@@ -346,16 +332,19 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Field Name</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>platform</td>
+<td>String</td>
 <td>Field used in the buy_vps functions</td>
 </tr>
 <tr>
 <td>name</td>
+<td>String</td>
 <td>Name of the VPS Platform</td>
 </tr>
 </tbody>
@@ -392,16 +381,19 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Field Name</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>id</td>
+<td>Integer</td>
 <td>Location ID used in the ordering process for referencing.</td>
 </tr>
 <tr>
 <td>name</td>
+<td>String</td>
 <td>Name of the location</td>
 </tr>
 </tbody>
@@ -432,16 +424,19 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>username</td>
+<td>String</td>
 <td>The login/email adddress used to signup</td>
 </tr>
 <tr>
 <td>password</td>
+<td>String</td>
 <td>Your account password</td>
 </tr>
 </tbody>
@@ -458,24 +453,29 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Field Name</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>name</td>
+<td>String</td>
 <td>This field contains a text description of the package/service</td>
 </tr>
 <tr>
 <td>type</td>
+<td>Integer</td>
 <td>Use to match up what OS Image templates are available for this VPS type.</td>
 </tr>
 <tr>
 <td>cost</td>
+<td>Float</td>
 <td>The cost per unit/slice.</td>
 </tr>
 <tr>
 <td>buyable</td>
+<td>Integer</td>
 <td>If the service be purchased now<br /> 1 = Available for purchase.<br /> 0 = Not Available for Purchase</td>
 </tr>
 </tbody>
@@ -545,52 +545,64 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>sid</td>
+<td>String</td>
 <td>Session ID from <strong>api_login</strong></td>
 </tr>
 <tr>
 <td>os</td>
+<td>String</td>
 <td>File filed from <strong>get_vps_templates</strong></td>
 </tr>
 <tr>
 <td>slices</td>
-<td>Integer from 1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)</td>
+<td>Integer</td>
+<td>1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)</td>
 </tr>
 <tr>
 <td>platform</td>
+<td>String</td>
 <td>platform field from the <strong>get_vps_platforms_array</strong></td>
 </tr>
 <tr>
 <td>controlpanel</td>
+<td>String</td>
 <td>none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS</td>
 </tr>
 <tr>
 <td>period</td>
+<td>Integer</td>
 <td>1-36, How frequently to be billed in months.   Some discounts as given based on the period.   </td>
 </tr>
 <tr>
 <td>location</td>
+<td>Integer</td>
 <td>id field from the <strong>get_vps_locations_array</strong></td>
 </tr>
 <tr>
 <td>version</td>
+<td>String</td>
 <td>os field from <strong>get_vps_templates</strong></td>
 </tr>
 <tr>
 <td>hostname</td>
+<td>String</td>
 <td>Desired Hostname for the VPS</td>
 </tr>
 <tr>
 <td>coupon</td>
+<td>String</td>
 <td>Optional Coupon to pass</td>
 </tr>
 <tr>
 <td>rootpass</td>
+<td>String</td>
 <td>Desired Root Password (unused for windows, send a blank string) </td>
 </tr>
 </tbody>
@@ -725,52 +737,64 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>sid</td>
+<td>String</td>
 <td>Session ID from <strong>api_login</strong></td>
 </tr>
 <tr>
 <td>os</td>
+<td>String</td>
 <td>File filed from <strong>get_vps_templates</strong></td>
 </tr>
 <tr>
 <td>slices</td>
-<td>Integer from 1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)</td>
+<td>Integer</td>
+<td>1 to 16 specifying the scale of the VPS resources you want (a 3 slice has 3x the resources of a 1 slice vps)</td>
 </tr>
 <tr>
 <td>platform</td>
+<td>String</td>
 <td>platform field from the <strong>get_vps_platforms_array</strong></td>
 </tr>
 <tr>
 <td>controlpanel</td>
+<td>String</td>
 <td>none, cpanel, or da   for None, cPanel, or DirectAdmin control panel addons, only availbale with CentOS</td>
 </tr>
 <tr>
 <td>period</td>
+<td>Integer</td>
 <td>1-36, How frequently to be billed in months.   Some discounts as given based on the period.   </td>
 </tr>
 <tr>
 <td>location</td>
+<td>Integer</td>
 <td>id field from the <strong>get_vps_locations_array</strong></td>
 </tr>
 <tr>
 <td>version</td>
+<td>String</td>
 <td>os field from <strong>get_vps_templates</strong></td>
 </tr>
 <tr>
 <td>hostname</td>
+<td>String</td>
 <td>Desired Hostname for the VPS</td>
 </tr>
 <tr>
 <td>coupon</td>
+<td>String</td>
 <td>Optional Coupon to pass</td>
 </tr>
 <tr>
 <td>rootpass</td>
+<td>String</td>
 <td>Desired Root Password (unused for windows, send a blank string)</td>
 </tr>
 </tbody>
@@ -817,32 +841,39 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <thead>
 <tr>
 <th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>type</td>
+<td>Integer</td>
 <td>matches above <strong>type</strong></td>
 </tr>
 <tr>
 <td>bits</td>
+<td>Integer</td>
 <td>32 or 64 Bit OS</td>
 </tr>
 <tr>
 <td>os</td>
+<td>String</td>
 <td>Distribution / OS Name</td>
 </tr>
 <tr>
 <td>version</td>
+<td>String</td>
 <td>Distribution / OS Version</td>
 </tr>
 <tr>
 <td>file</td>
+<td>String</td>
 <td>the <strong>os</strong> field in <strong>buy_vps</strong></td>
 </tr>
 <tr>
 <td>title</td>
+<td>String</td>
 <td>Full template name including OS / Version/ Architecture information.</td>
 </tr>
 </tbody>
