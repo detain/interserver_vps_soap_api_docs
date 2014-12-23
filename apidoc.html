@@ -1,265 +1,158 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interserver VPS API Documentation</title>
-    
-    <link rel="stylesheet" type="text/css" href="documentup.v1.css">
-    
-    
-      <style type="text/css">
-        a {color: #336699}
-      </style>
-    
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Interserver VPS API Documentation</title>
+	
+	<link rel="stylesheet" type="text/css" href="documentup.v1.css">
+	
+	
+	  <style type="text/css">
+		a {color: #336699}
+	  </style>
+	
 
-    
-      <!-- Google Analytics -->
-      <script type="text/javascript">
+	
+	  <!-- Google Analytics -->
+	  <script type="text/javascript">
 
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-32229521-1']);
-        _gaq.push(['_trackPageview']);
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-32229521-1']);
+		_gaq.push(['_trackPageview']);
 
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
+		(function() {
+		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
 
-      </script>
-    
+	  </script>
+	
 
-    <!-- Typekit -->
-    
-      <script type="text/javascript">
-        (function() {
-          var config = {
-            kitId: 'hjp0pft',
-            scriptTimeout: 3000
-          };
-          var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
-        })();
-      </script>
-    
+	<!-- Typekit -->
+	
+	  <script type="text/javascript">
+		(function() {
+		  var config = {
+			kitId: 'hjp0pft',
+			scriptTimeout: 3000
+		  };
+		  var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/( |^)wf-loading( |$)/g,"");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script");tk.src='+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(a&&a!="complete"&&a!="loaded")return;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+		})();
+	  </script>
+	
   </head>
   <body><div id="container">
   <div id="nav">
-    
-      <div id="header">
-        <a href="#" id="logo">Interserver VPS API Documentation</a>
-      </div>
-    
-    <ul id="sections">
-      
-        <li>
-          <a href="#connecting-to-the-api">Connecting To the API</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#connecting-to-the-api/prerequisites-and-api-urls">Prerequisites and API URLs</a>
-                </li>
-              
-                <li>
-                  <a href="#connecting-to-the-api/authentication">Authentication</a>
-                </li>
-              
-                <li>
-                  <a href="#connecting-to-the-api/sample-login-code">Sample Login Code</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#available-vps-server-types-and-pricing">Available VPS Server Types and Pricing</a>
-          
-        </li>
-      
-        <li>
-          <a href="#getting-the-available-vps-os-templates">Getting the Available VPS OS Templates</a>
-          
-        </li>
-      
-        <li>
-          <a href="#undocumented-functions">Undocumented Functions</a>
-          
-        </li>
-      
-        <li>
-          <a href="#get_vps_platforms_array">get_vps_platforms_array</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#get_vps_platforms_array/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_platforms_array/output">Output</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_platforms_array/example-output">Example Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#get_vps_locations_array">get_vps_locations_array</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#get_vps_locations_array/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_locations_array/output">Output</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_locations_array/example-output">Example Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#get_login">get_login</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#get_login/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#get_login/output">Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#get_vps_slice_types">get_vps_slice_types</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#get_vps_slice_types/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_slice_types/output">Output</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_slice_types/example-output">Example Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#api_validate_buy_vps">api_validate_buy_vps</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#api_validate_buy_vps/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#api_validate_buy_vps/output-fields">Output Fields</a>
-                </li>
-              
-                <li>
-                  <a href="#api_validate_buy_vps/example-output">Example Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#api_buy_vps">api_buy_vps</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#api_buy_vps/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#api_buy_vps/output-fields">Output Fields</a>
-                </li>
-              
-                <li>
-                  <a href="#api_buy_vps/example-output">Example Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#get_vps_templates">get_vps_templates</a>
-          
-            <ul>
-              
-                <li>
-                  <a href="#get_vps_templates/input-parameters">Input Parameters</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_templates/output-fields">Output Fields</a>
-                </li>
-              
-                <li>
-                  <a href="#get_vps_templates/example-output">Example Output</a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-        <li>
-          <a href="#feedback-and-suggestions">Feedback and Suggestions</a>
-          
-        </li>
-      
-    </ul>
-    
-      <div class="extra" id="github">
-        <a href="https://github.com/detain/interserver_vps_soap_api_docs">Source on GitHub</a>
-      </div>
-      
-        <div class="extra" id="github-issues">
-          <a href="https://github.com/detain/interserver_vps_soap_api_docs/issues">Issues</a>
-        </div>
-      
-      
-    
-    
-      <div class="extra twitter">
-        <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=interserver&show_count=false"></iframe>
-      </div>
-    
+	
+	  <div id="header">
+		<a href="#" id="logo">Interserver VPS API Documentation</a>
+	  </div>
+	
+	<ul id="sections">
+	  
+		<li>
+		  <a href="#connecting-to-the-api">Connecting To the API</a>
+		  
+			<ul>
+			  
+				<li>
+				  <a href="#connecting-to-the-api/prerequisites-and-api-urls">Prerequisites and API URLs</a>
+				</li>
+			  
+				<li>
+				  <a href="#connecting-to-the-api/authentication">Authentication</a>
+				</li>
+			  
+				<li>
+				  <a href="#connecting-to-the-api/sample-login-code">Sample Login Code</a>
+				</li>
+			  
+			</ul>
+		  
+		</li>
+	  
+		<li>
+		  <a href="#available-vps-server-types-and-pricing">Available VPS Server Types and Pricing</a>
+		  
+		</li>
+	  
+		<li>
+		  <a href="#getting-the-available-vps-os-templates">Getting the Available VPS OS Templates</a>
+		  
+		</li>
+	  
+		<li>
+		  <a href="#function-reference">Function Reference</a>
+		  
+			<ul>
+			  
+				<li>
+				  <a href="#function-reference/undocumented-functions">Undocumented Functions</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/get_vps_platforms_array">get_vps_platforms_array</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/get_vps_locations_array">get_vps_locations_array</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/get_login">get_login</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/get_vps_slice_types">get_vps_slice_types</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/api_validate_buy_vps">api_validate_buy_vps</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/api_buy_vps">api_buy_vps</a>
+				</li>
+			  
+				<li>
+				  <a href="#function-reference/get_vps_templates">get_vps_templates</a>
+				</li>
+			  
+			</ul>
+		  
+		</li>
+	  
+		<li>
+		  <a href="#feedback-and-suggestions">Feedback and Suggestions</a>
+		  
+		</li>
+	  
+	</ul>
+	
+	  <div class="extra" id="github">
+		<a href="https://github.com/detain/interserver_vps_soap_api_docs">Source on GitHub</a>
+	  </div>
+	  
+		<div class="extra" id="github-issues">
+		  <a href="https://github.com/detain/interserver_vps_soap_api_docs/issues">Issues</a>
+		</div>
+	  
+	  
+	
+	
+	  <div class="extra twitter">
+		<iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=interserver&show_count=false"></iframe>
+	  </div>
+	
   </div>
   <div id="content">
-    
-      <a href="https://github.com/detain/interserver_vps_soap_api_docs" id="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-    
-    <h1 id="interserver-vps-soap-api-documentation">InterServer VPS SOAP API Documentation</h1>
+	
+	  <a href="https://github.com/detain/interserver_vps_soap_api_docs" id="github-ribbon"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	
+	<h1 id="interserver-vps-soap-api-documentation">InterServer VPS SOAP API Documentation</h1>
 <p>Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software</p>
 <p>Version 0.9.1 ©2014 InterServer</p>
 <h2 id='connecting-to-the-api' id="connecting-to-the-api">Connecting To the API</h2 id='connecting-to-the-api'>
@@ -282,21 +175,21 @@
 <h3 id='connecting-to-the-api/sample-login-code' id="sample-login-code">Sample Login Code</h3 id='connecting-to-the-api/sample-login-code'>
 <h4 id="php">PHP</h4>
 <pre><code class="lang-php"><span class="preprocessor">&lt;?php</span>
-    <span class="variable">$client</span> = <span class="keyword">new</span> SoapClient(<span class="string">"https://my.interserver.net/api.php?wsdl"</span>);
-    <span class="variable">$session_id</span> = <span class="variable">$client</span>-&gt;api_login(<span class="string">'username@site.com'</span>, <span class="string">'password'</span>);
-    <span class="keyword">if</span> (!strlen(<span class="variable">$session_id</span>) &gt; <span class="number">0</span>)
-        <span class="keyword">die</span>(<span class="string">"Failure!\nNo Session Returned - Bad Login Info\n"</span>);
-    <span class="keyword">echo</span> <span class="string">"Success!\n Got Session ID: {$session_id}\n”;
-    // Rest of code logic would go here
+	<span class="variable">$client</span> = <span class="keyword">new</span> SoapClient(<span class="string">"https://my.interserver.net/api.php?wsdl"</span>);
+	<span class="variable">$session_id</span> = <span class="variable">$client</span>-&gt;api_login(<span class="string">'username@site.com'</span>, <span class="string">'password'</span>);
+	<span class="keyword">if</span> (!strlen(<span class="variable">$session_id</span>) &gt; <span class="number">0</span>)
+		<span class="keyword">die</span>(<span class="string">"Failure!\nNo Session Returned - Bad Login Info\n"</span>);
+	<span class="keyword">echo</span> <span class="string">"Success!\n Got Session ID: {$session_id}\n”;
+	// Rest of code logic would go here
 ?&gt;</code></pre>
 <h4 id="perl">Perl</h4>
 <pre><code class="lang-perl"> <span class="comment">#!perl -w</span>
   <span class="keyword">use</span> SOAP::Lite;
-  <span class="keyword">print</span> SOAP::Lite                                             
-    -&gt; uri(<span class="string">'urn:myapi'</span>)
-    -&gt; proxy(<span class="string">'https://my.interserver.net/api.php?WSDL'</span>)
-    -&gt; api_login(<span class="string">'username@site.com'</span>, <span class="string">'password'</span>)                                                    
-    -&gt; result;</code></pre>
+  <span class="keyword">print</span> SOAP::Lite
+	-&gt; uri(<span class="string">'urn:myapi'</span>)
+	-&gt; proxy(<span class="string">'https://my.interserver.net/api.php?wsdl'</span>)
+	-&gt; api_login(<span class="string">'username@site.com'</span>, <span class="string">'password'</span>)
+	-&gt; result;</code></pre>
 <h4 id="python">Python</h4>
 <pre><code class="lang-python"><span class="keyword">from</span> pysimplesoap.client <span class="keyword">import</span> SoapClient
 client = SoapClient(wsdl=<span class="string">"https://my.interserver.net/api.php?WSDL"</span>,trace=<span class="built_in">False</span>)
@@ -307,27 +200,30 @@ response = client.api_login(<span class="string">'username@site.com'</span>, <sp
 <p>We have several types of Servers available for use with VPS Hosting. You can get a list of the types available and there cost per slice/unit by making a call to the <strong>get_vps_slice_types</strong>  function.</p>
 <h2 id='getting-the-available-vps-os-templates' id="getting-the-available-vps-os-templates">Getting the Available VPS OS Templates</h2 id='getting-the-available-vps-os-templates'>
 <p>Each Type of Virtualization has its own set of installable OS templates/images.   To get a list of them use the get_vps_templates function.</p>
-<h2 id='undocumented-functions' id="undocumented-functions">Undocumented Functions</h2 id='undocumented-functions'>
+<h2 id='function-reference' id="function-reference">Function Reference</h2 id='function-reference'>
+<h3 id='function-reference/undocumented-functions' id="undocumented-functions">Undocumented Functions</h3 id='function-reference/undocumented-functions'>
 <p>Still need to document these:</p>
-<p> <em>api_make_payment
- </em>api_get_paypal_url
- <em>api_vps_get_service
- </em>api_vps_get_services
- <em>api_vps_cancel_service
- </em>api_vps_get_client_invoices
- <em>api_vps_queue_stop
- </em>api_vps_queue_start
- <em>api_vps_queue_restart
- </em>api_vps_get_client_unpaid_invoices
- <em>api_vps_screenshot
- </em>api_vps_get_server_name
- *get_hostname</p>
-<h2 id='get_vps_platforms_array' id="get_vps_platforms_array">get_vps_platforms_array</h2 id='get_vps_platforms_array'>
+<ul>
+<li>api_make_payment</li>
+<li>api_get_paypal_url</li>
+<li>api_vps_get_service</li>
+<li>api_vps_get_services</li>
+<li>api_vps_cancel_service</li>
+<li>api_vps_get_client_invoices</li>
+<li>api_vps_queue_stop</li>
+<li>api_vps_queue_start</li>
+<li>api_vps_queue_restart</li>
+<li>api_vps_get_client_unpaid_invoices</li>
+<li>api_vps_screenshot</li>
+<li>api_vps_get_server_name</li>
+<li>get_hostname</li>
+</ul>
+<h3 id='function-reference/get_vps_platforms_array' id="get_vps_platforms_array">get_vps_platforms_array</h3 id='function-reference/get_vps_platforms_array'>
 <p>Use this function to get a list of the various platforms available for ordering.
 The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
-<h3 id='get_vps_platforms_array/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_platforms_array/input-parameters'>
+<h4 id="input-parameters">Input Parameters</h4>
 <p>No Input / Parameters to pass</p>
-<h3 id='get_vps_platforms_array/output' id="output">Output</h3 id='get_vps_platforms_array/output'>
+<h4 id="output">Output</h4>
 <table>
 <thead>
 <tr>
@@ -349,7 +245,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='get_vps_platforms_array/example-output' id="example-output">Example Output</h3 id='get_vps_platforms_array/example-output'>
+<h4 id="example-output">Example Output</h4>
 <table>
 <thead>
 <tr>
@@ -372,11 +268,12 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h2 id='get_vps_locations_array' id="get_vps_locations_array">get_vps_locations_array</h2 id='get_vps_locations_array'>
-<p>Use this function to get a list of the Locations available for ordering.<br>The <em>id</em> field is also needed to pass to the buy_vps functions. </p>
-<h3 id='get_vps_locations_array/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_locations_array/input-parameters'>
+<h3 id='function-reference/get_vps_locations_array' id="get_vps_locations_array">get_vps_locations_array</h3 id='function-reference/get_vps_locations_array'>
+<p>Use this function to get a list of the Locations available for ordering.
+The <em>id</em> field is also needed to pass to the buy_vps functions.</p>
+<h4 id="input-parameters">Input Parameters</h4>
 <p>No Input / Parameters to pass</p>
-<h3 id='get_vps_locations_array/output' id="output">Output</h3 id='get_vps_locations_array/output'>
+<h4 id="output">Output</h4>
 <table>
 <thead>
 <tr>
@@ -398,7 +295,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='get_vps_locations_array/example-output' id="example-output">Example Output</h3 id='get_vps_locations_array/example-output'>
+<h4 id="example-output">Example Output</h4>
 <table>
 <thead>
 <tr>
@@ -417,9 +314,9 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h2 id='get_login' id="get_login">get_login</h2 id='get_login'>
+<h3 id='function-reference/get_login' id="get_login">get_login</h3 id='function-reference/get_login'>
 <p>This function creates a session in our system which you will need to pass to most functions for authentication.</p>
-<h3 id='get_login/input-parameters' id="input-parameters">Input Parameters</h3 id='get_login/input-parameters'>
+<h4 id="input-parameters">Input Parameters</h4>
 <table>
 <thead>
 <tr>
@@ -442,12 +339,12 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tbody>
 </table>
 <p>*This is temporary and will be changed to an API specific key at some point   </p>
-<h3 id='get_login/output' id="output">Output</h3 id='get_login/output'>
+<h4 id="output">Output</h4>
 <p>String output, the Session ID if successfull, otherwise a blank string </p>
-<h2 id='get_vps_slice_types' id="get_vps_slice_types">get_vps_slice_types</h2 id='get_vps_slice_types'>
-<h3 id='get_vps_slice_types/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_slice_types/input-parameters'>
+<h3 id='function-reference/get_vps_slice_types' id="get_vps_slice_types">get_vps_slice_types</h3 id='function-reference/get_vps_slice_types'>
+<h4 id="input-parameters">Input Parameters</h4>
 <p>No Input / Parameters to pass</p>
-<h3 id='get_vps_slice_types/output' id="output">Output</h3 id='get_vps_slice_types/output'>
+<h4 id="output">Output</h4>
 <p>Outputs an associative array.</p>
 <table>
 <thead>
@@ -480,7 +377,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='get_vps_slice_types/example-output' id="example-output">Example Output</h3 id='get_vps_slice_types/example-output'>
+<h4 id="example-output">Example Output</h4>
 <ul>
 <li>(as of 12/14/2014)</li>
 </ul>
@@ -538,9 +435,10 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h2 id='api_validate_buy_vps' id="api_validate_buy_vps">api_validate_buy_vps</h2 id='api_validate_buy_vps'>
-<p>Checks if the parameters for your order pass validation and let you know if there are any errors.<br>It will also give you information on the pricing breakdown. </p>
-<h3 id='api_validate_buy_vps/input-parameters' id="input-parameters">Input Parameters</h3 id='api_validate_buy_vps/input-parameters'>
+<h3 id='function-reference/api_validate_buy_vps' id="api_validate_buy_vps">api_validate_buy_vps</h3 id='function-reference/api_validate_buy_vps'>
+<p>Checks if the parameters for your order pass validation and let you know if there are any errors.
+It will also give you information on the pricing breakdown.</p>
+<h4 id="input-parameters">Input Parameters</h4>
 <table>
 <thead>
 <tr>
@@ -578,7 +476,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <tr>
 <td>period</td>
 <td>Integer</td>
-<td>1-36, How frequently to be billed in months.   Some discounts as given based on the period.   </td>
+<td>1-36, How frequently to be billed in months.   Some discounts as given based on the period.</td>
 </tr>
 <tr>
 <td>location</td>
@@ -607,7 +505,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='api_validate_buy_vps/output-fields' id="output-fields">Output Fields</h3 id='api_validate_buy_vps/output-fields'>
+<h4 id="output-fields">Output Fields</h4>
 <table>
 <thead>
 <tr>
@@ -655,7 +553,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <tr>
 <td>repeat_service_cost</td>
 <td>Float</td>
-<td>Amount that will be billed on future invoices each billig interval after the order </td>
+<td>Amount that will be billed on future invoices each billig interval after the order</td>
 </tr>
 <tr>
 <td>monthly_service_cost</td>
@@ -670,57 +568,57 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <tr>
 <td>os</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>slices</td>
 <td>Integer</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>platform</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>controlpanel</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>period</td>
 <td>Integer</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>location</td>
 <td>Integer</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>version</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>hostname</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>coupon</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>rootpass</td>
 <td>String</td>
-<td>same field passed for input, if there were any errors in the validation it might be changed.</td>
+<td>Input fields modified as needed for validation.</td>
 </tr>
 <tr>
 <td>status_text</td>
 <td>String</td>
-<td>descriptive text explaining errors if any, or related response from the order validation  </td>
+<td>descriptive text explaining errors if any, or related response from the order validation</td>
 </tr>
 <tr>
 <td>status</td>
@@ -729,10 +627,33 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='api_validate_buy_vps/example-output' id="example-output">Example Output</h3 id='api_validate_buy_vps/example-output'>
-<h2 id='api_buy_vps' id="api_buy_vps">api_buy_vps</h2 id='api_buy_vps'>
+<h4 id="example-code">Example Code</h4>
+<h5 id="php">PHP</h5>
+<pre><code class="lang-php"><span class="preprocessor">&lt;?php</span>
+	<span class="variable">$client</span> = <span class="keyword">new</span> SoapClient(<span class="string">"https://my.interserver.net/api.php?wsdl"</span>);
+	<span class="variable">$sid</span> = <span class="variable">$client</span>-&gt;api_login(<span class="string">'username@site.com'</span>, <span class="string">'password'</span>);
+	<span class="keyword">if</span> (!strlen(<span class="variable">$sid</span>) &gt; <span class="number">0</span>)
+		<span class="keyword">die</span>(<span class="string">"Failure!\nNo Session Returned - Bad Login Info\n"</span>);
+	<span class="variable">$os</span>=<span class="string">'ubuntu-14.04-x86_64.tar.gz'</span>;    <span class="comment">// from $templates[]['file']</span>
+	<span class="variable">$slices</span>=<span class="number">1</span>;                            <span class="comment">// 1-16</span>
+	<span class="variable">$platform</span>=<span class="string">'kvm'</span>;                    <span class="comment">// from $platforms[]['platform'] ?</span>
+	<span class="variable">$controlpanel</span>=<span class="string">'none'</span>;                <span class="comment">// none, cpanel, or da</span>
+	<span class="variable">$period</span>=<span class="number">1</span>;                            <span class="comment">// 1-anything really</span>
+	<span class="variable">$location</span>=<span class="number">1</span>;                        <span class="comment">// from $locations[]['id']</span>
+	<span class="variable">$version</span>=<span class="string">'ubuntu'</span>;                    <span class="comment">// from $templates[]['os']</span>
+	<span class="variable">$hostname</span>=<span class="string">'vpsapi.test.com'</span>;
+	<span class="variable">$coupon</span>=<span class="string">''</span>;
+	<span class="variable">$rootpass</span>=<span class="string">'apitest'</span>;
+	<span class="variable">$response</span> = <span class="variable">$client</span>-&gt;api_api_validate_buy_vps(<span class="variable">$sid</span>, <span class="variable">$os</span>, <span class="variable">$slices</span>, <span class="variable">$platform</span>, <span class="variable">$controlpanel</span>, <span class="variable">$period</span>, <span class="variable">$location</span>, <span class="variable">$version</span>, <span class="variable">$hostname</span>, <span class="variable">$coupon</span>, <span class="variable">$rootpass</span>);
+	<span class="keyword">if</span> (<span class="variable">$response</span>[<span class="string">'status'</span>] != <span class="string">'ok'</span>)
+		<span class="keyword">die</span>(<span class="string">"Errors In Order\n{$errors}\n"</span>);
+	<span class="keyword">echo</span> <span class="string">"The order parameters are valid\n"</span>;
+	<span class="keyword">echo</span> <span class="string">"This order would cost {$response['service_cost']}\n"</span>;
+	<span class="comment">// Rest of code logic would go here</span>
+<span class="preprocessor">?&gt;</span></code></pre>
+<h3 id='function-reference/api_buy_vps' id="api_buy_vps">api_buy_vps</h3 id='function-reference/api_buy_vps'>
 <p>Places a VPS order in our system.    These are the same parameters as api_validate_buy_vps.</p>
-<h3 id='api_buy_vps/input-parameters' id="input-parameters">Input Parameters</h3 id='api_buy_vps/input-parameters'>
+<h4 id="input-parameters">Input Parameters</h4>
 <table>
 <thead>
 <tr>
@@ -770,7 +691,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <tr>
 <td>period</td>
 <td>Integer</td>
-<td>1-36, How frequently to be billed in months.   Some discounts as given based on the period.   </td>
+<td>1-36, How frequently to be billed in months.   Some discounts as given based on the period.</td>
 </tr>
 <tr>
 <td>location</td>
@@ -799,7 +720,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='api_buy_vps/output-fields' id="output-fields">Output Fields</h3 id='api_buy_vps/output-fields'>
+<h4 id="output-fields">Output Fields</h4>
 <table>
 <thead>
 <tr>
@@ -817,7 +738,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 <tr>
 <td>status_text</td>
 <td>String</td>
-<td>descriptive text explaining errors if any, or related response from the order  </td>
+<td>descriptive text explaining errors if any, or related response from the order</td>
 </tr>
 <tr>
 <td>invoices</td>
@@ -831,11 +752,36 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='api_buy_vps/example-output' id="example-output">Example Output</h3 id='api_buy_vps/example-output'>
-<h2 id='get_vps_templates' id="get_vps_templates">get_vps_templates</h2 id='get_vps_templates'>
-<h3 id='get_vps_templates/input-parameters' id="input-parameters">Input Parameters</h3 id='get_vps_templates/input-parameters'>
+<h4 id="example-code">Example Code</h4>
+<h5 id="php">PHP</h5>
+<pre><code class="lang-php"><span class="preprocessor">&lt;?php</span>
+	<span class="variable">$client</span> = <span class="keyword">new</span> SoapClient(<span class="string">"https://my.interserver.net/api.php?wsdl"</span>);
+	<span class="variable">$sid</span> = <span class="variable">$client</span>-&gt;api_login(<span class="string">'username@site.com'</span>, <span class="string">'password'</span>);
+	<span class="keyword">if</span> (!strlen(<span class="variable">$sid</span>) &gt; <span class="number">0</span>)
+		<span class="keyword">die</span>(<span class="string">"Failure!\nNo Session Returned - Bad Login Info\n"</span>);
+	<span class="variable">$os</span>=<span class="string">'ubuntu-14.04-x86_64.tar.gz'</span>;    <span class="comment">// from $templates[]['file']</span>
+	<span class="variable">$slices</span>=<span class="number">1</span>;                            <span class="comment">// 1-16</span>
+	<span class="variable">$platform</span>=<span class="string">'kvm'</span>;                    <span class="comment">// from $platforms[]['platform'] ?</span>
+	<span class="variable">$controlpanel</span>=<span class="string">'none'</span>;                <span class="comment">// none, cpanel, or da</span>
+	<span class="variable">$period</span>=<span class="number">1</span>;                            <span class="comment">// 1-anything really</span>
+	<span class="variable">$location</span>=<span class="number">1</span>;                        <span class="comment">// from $locations[]['id']</span>
+	<span class="variable">$version</span>=<span class="string">'ubuntu'</span>;                    <span class="comment">// from $templates[]['os']</span>
+	<span class="variable">$hostname</span>=<span class="string">'vpsapi.test.com'</span>;
+	<span class="variable">$coupon</span>=<span class="string">''</span>;
+	<span class="variable">$rootpass</span>=<span class="string">'apitest'</span>;
+	<span class="variable">$response</span> = <span class="variable">$client</span>-&gt;api_api_buy_vps(<span class="variable">$sid</span>, <span class="variable">$os</span>, <span class="variable">$slices</span>, <span class="variable">$platform</span>, <span class="variable">$controlpanel</span>, <span class="variable">$period</span>, <span class="variable">$location</span>, <span class="variable">$version</span>, <span class="variable">$hostname</span>, <span class="variable">$coupon</span>, <span class="variable">$rootpass</span>);
+	<span class="keyword">if</span> (<span class="variable">$response</span>[<span class="string">'status'</span>] != <span class="string">'ok'</span>)
+		<span class="keyword">die</span>(<span class="string">"Errors In Order\n{$errors}\n"</span>);
+	<span class="keyword">echo</span> <span class="string">"Order Placed\n"</span>;
+	<span class="keyword">echo</span> <span class="string">"VPS ID: {$response['status_text']}\n"</span>;
+	<span class="keyword">echo</span> <span class="string">"Cost: {$response['cost']\n"</span>;
+	<span class="keyword">echo</span> <span class="string">"Invoices: {$response['invoices']}\n"</span>;
+	<span class="comment">// Rest of code logic would go here</span>
+<span class="preprocessor">?&gt;</span></code></pre>
+<h3 id='function-reference/get_vps_templates' id="get_vps_templates">get_vps_templates</h3 id='function-reference/get_vps_templates'>
+<h4 id="input-parameters">Input Parameters</h4>
 <p>No Input / Parameters to pass</p>
-<h3 id='get_vps_templates/output-fields' id="output-fields">Output Fields</h3 id='get_vps_templates/output-fields'>
+<h4 id="output-fields">Output Fields</h4>
 <p>Outputs an associative array.</p>
 <table>
 <thead>
@@ -878,7 +824,7 @@ The <em>platform</em> field is also needed to pass to the buy_vps functions.</p>
 </tr>
 </tbody>
 </table>
-<h3 id='get_vps_templates/example-output' id="example-output">Example Output</h3 id='get_vps_templates/example-output'>
+<h4 id="example-output">Example Output</h4>
 <table>
 <thead>
 <tr>
