@@ -1,6 +1,8 @@
 
 # InterServer VPS SOAP API Documentation
 
+[![Join the chat at https://gitter.im/detain/interserver_vps_soap_api_docs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/detain/interserver_vps_soap_api_docs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Integrating VPS Setup and Operation into 3<sup>rd</sup> Party Sites and Software
 
 Version 0.9.1 ©2014 InterServer
