@@ -876,7 +876,7 @@ The Session ID, or SID will be needed for most future commands so store this val
 
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="nn">SOAP::</span><span class="n">Lite</span>
   <span class="o">-&gt;</span> <span class="n">uri</span><span class="p">(</span><span class="s">'urn:myapi'</span><span class="p">)</span>
@@ -888,7 +888,7 @@ The Session ID, or SID will be needed for most future commands so store this val
   <span class="nb">die</span> <span class="s">"Got A Blank Sessoion"</span><span class="p">;</span>
 <span class="p">}</span> 
 <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span>
-  <span class="o">-&gt;</span> <span class="n">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
+  <span class="o">-&gt;</span> <span class="n">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
 <span class="nb">die</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="n">faultstring</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">fault</span><span class="p">);</span>
 <span class="k">print</span> <span class="s">"Response:\n"</span><span class="p">,</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">,</span><span class="s">"\n"</span><span class="p">;</span>
 </pre></div>
@@ -933,14 +933,14 @@ The Session ID, or SID will be needed for most future commands so store this val
 <span class="nb">ini_set</span><span class="p">(</span><span class="s2">"soap.wsdl_cache_enabled"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">);</span>
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SoapClient</span><span class="p">(</span><span class="s2">"https://my.interserver.net/api.php?wsdl"</span><span class="p">);</span>
 <span class="k">try</span>  <span class="p">{</span> 
   <span class="nv">$sid</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">strlen</span><span class="p">(</span><span class="nv">$sid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">die</span><span class="p">(</span><span class="s2">"Got A Blank Sessoion"</span><span class="p">);</span>
-  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
+  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
   <span class="k">echo</span> <span class="s1">'$res = '</span><span class="o">.</span><span class="nb">var_export</span><span class="p">(</span><span class="nv">$res</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">echo</span> <span class="s2">"Exception Occured!</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
@@ -11149,12 +11149,12 @@ The Session ID, or SID will be needed for most future commands so store this val
 <div class="highlight highlight-perl"><pre><span class="c1">#!/usr/bin/perl -w</span>
 <span class="k">use</span> <span class="nn">SOAP::</span><span class="n">Lite</span><span class="p">;</span>
 
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="nn">SOAP::</span><span class="n">Lite</span>
   <span class="o">-&gt;</span> <span class="n">uri</span><span class="p">(</span><span class="s">'urn:myapi'</span><span class="p">)</span>
   <span class="o">-&gt;</span> <span class="n">proxy</span><span class="p">(</span><span class="s">'https://my.interserver.net/api.php?wsdl'</span><span class="p">);</span>
 <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span>
-  <span class="o">-&gt;</span> <span class="n">get_hostname</span><span class="p">(</span><span class="nv">$ip</span><span class="p">);</span>
+  <span class="o">-&gt;</span> <span class="n">get_hostname</span><span class="p">(</span><span class="nv">$ipAddress</span><span class="p">);</span>
 <span class="nb">die</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="n">faultstring</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">fault</span><span class="p">);</span>
 <span class="k">print</span> <span class="s">"Response:\n"</span><span class="p">,</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">,</span><span class="s">"\n"</span><span class="p">;</span>
 </pre></div>
@@ -11181,10 +11181,10 @@ The Session ID, or SID will be needed for most future commands so store this val
 
 <div class="highlight highlight-php"><pre><span class="cp">&lt;?php</span>
 <span class="nb">ini_set</span><span class="p">(</span><span class="s2">"soap.wsdl_cache_enabled"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">);</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SoapClient</span><span class="p">(</span><span class="s2">"https://my.interserver.net/api.php?wsdl"</span><span class="p">);</span>
 <span class="k">try</span>  <span class="p">{</span> 
-  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get_hostname</span><span class="p">(</span><span class="nv">$ip</span><span class="p">);</span>
+  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get_hostname</span><span class="p">(</span><span class="nv">$ipAddress</span><span class="p">);</span>
   <span class="k">echo</span> <span class="s1">'$res = '</span><span class="o">.</span><span class="nb">var_export</span><span class="p">(</span><span class="nv">$res</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">echo</span> <span class="s2">"Exception Occured!</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
@@ -18992,7 +18992,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
 
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$coupon</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="nn">SOAP::</span><span class="n">Lite</span>
@@ -19005,7 +19005,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
   <span class="nb">die</span> <span class="s">"Got A Blank Sessoion"</span><span class="p">;</span>
 <span class="p">}</span> 
 <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span>
-  <span class="o">-&gt;</span> <span class="n">api_buy_license</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">,</span> <span class="nv">$type</span><span class="p">,</span> <span class="nv">$coupon</span><span class="p">);</span>
+  <span class="o">-&gt;</span> <span class="n">api_buy_license</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">,</span> <span class="nv">$type</span><span class="p">,</span> <span class="nv">$coupon</span><span class="p">);</span>
 <span class="nb">die</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="n">faultstring</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">fault</span><span class="p">);</span>
 <span class="k">print</span> <span class="s">"Response:\n"</span><span class="p">,</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">,</span><span class="s">"\n"</span><span class="p">;</span>
 </pre></div>
@@ -19051,7 +19051,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
 <span class="nb">ini_set</span><span class="p">(</span><span class="s2">"soap.wsdl_cache_enabled"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">);</span>
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
 <span class="nv">$coupon</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">5</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SoapClient</span><span class="p">(</span><span class="s2">"https://my.interserver.net/api.php?wsdl"</span><span class="p">);</span>
@@ -19059,7 +19059,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
   <span class="nv">$sid</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">strlen</span><span class="p">(</span><span class="nv">$sid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">die</span><span class="p">(</span><span class="s2">"Got A Blank Sessoion"</span><span class="p">);</span>
-  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_buy_license</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">,</span> <span class="nv">$type</span><span class="p">,</span> <span class="nv">$coupon</span><span class="p">);</span>
+  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_buy_license</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">,</span> <span class="nv">$type</span><span class="p">,</span> <span class="nv">$coupon</span><span class="p">);</span>
   <span class="k">echo</span> <span class="s1">'$res = '</span><span class="o">.</span><span class="nb">var_export</span><span class="p">(</span><span class="nv">$res</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">echo</span> <span class="s2">"Exception Occured!</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
@@ -19178,7 +19178,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
 
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="nn">SOAP::</span><span class="n">Lite</span>
   <span class="o">-&gt;</span> <span class="n">uri</span><span class="p">(</span><span class="s">'urn:myapi'</span><span class="p">)</span>
@@ -19190,7 +19190,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
   <span class="nb">die</span> <span class="s">"Got A Blank Sessoion"</span><span class="p">;</span>
 <span class="p">}</span> 
 <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span>
-  <span class="o">-&gt;</span> <span class="n">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
+  <span class="o">-&gt;</span> <span class="n">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
 <span class="nb">die</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="n">faultstring</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">fault</span><span class="p">);</span>
 <span class="k">print</span> <span class="s">"Response:\n"</span><span class="p">,</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">,</span><span class="s">"\n"</span><span class="p">;</span>
 </pre></div>
@@ -19235,14 +19235,14 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
 <span class="nb">ini_set</span><span class="p">(</span><span class="s2">"soap.wsdl_cache_enabled"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">);</span>
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$type</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SoapClient</span><span class="p">(</span><span class="s2">"https://my.interserver.net/api.php?wsdl"</span><span class="p">);</span>
 <span class="k">try</span>  <span class="p">{</span> 
   <span class="nv">$sid</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">strlen</span><span class="p">(</span><span class="nv">$sid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">die</span><span class="p">(</span><span class="s2">"Got A Blank Sessoion"</span><span class="p">);</span>
-  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
+  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_cancel_license_ip</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">,</span> <span class="nv">$type</span><span class="p">);</span>
   <span class="k">echo</span> <span class="s1">'$res = '</span><span class="o">.</span><span class="nb">var_export</span><span class="p">(</span><span class="nv">$res</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">echo</span> <span class="s2">"Exception Occured!</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
@@ -29677,7 +29677,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="nv">$domain</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$ARGV</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="nn">SOAP::</span><span class="n">Lite</span>
   <span class="o">-&gt;</span> <span class="n">uri</span><span class="p">(</span><span class="s">'urn:myapi'</span><span class="p">)</span>
   <span class="o">-&gt;</span> <span class="n">proxy</span><span class="p">(</span><span class="s">'https://my.interserver.net/api.php?wsdl'</span><span class="p">);</span>
@@ -29688,7 +29688,7 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
   <span class="nb">die</span> <span class="s">"Got A Blank Sessoion"</span><span class="p">;</span>
 <span class="p">}</span> 
 <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span>
-  <span class="o">-&gt;</span> <span class="n">api_add_dns_domain</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">);</span>
+  <span class="o">-&gt;</span> <span class="n">api_add_dns_domain</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">);</span>
 <span class="nb">die</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="n">faultstring</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">fault</span><span class="p">);</span>
 <span class="k">print</span> <span class="s">"Response:\n"</span><span class="p">,</span><span class="nv">$res</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">,</span><span class="s">"\n"</span><span class="p">;</span>
 </pre></div>
@@ -29734,13 +29734,13 @@ Additionally you can get a list of the vps platforms with the <a href="#get_vps_
 <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
 <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
 <span class="nv">$domain</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
-<span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
+<span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'argv'</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SoapClient</span><span class="p">(</span><span class="s2">"https://my.interserver.net/api.php?wsdl"</span><span class="p">);</span>
 <span class="k">try</span>  <span class="p">{</span> 
   <span class="nv">$sid</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">strlen</span><span class="p">(</span><span class="nv">$sid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">die</span><span class="p">(</span><span class="s2">"Got A Blank Sessoion"</span><span class="p">);</span>
-  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_add_dns_domain</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">);</span>
+  <span class="nv">$res</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">api_add_dns_domain</span><span class="p">(</span><span class="nv">$sid</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">);</span>
   <span class="k">echo</span> <span class="s1">'$res = '</span><span class="o">.</span><span class="nb">var_export</span><span class="p">(</span><span class="nv">$res</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">echo</span> <span class="s2">"Exception Occured!</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
