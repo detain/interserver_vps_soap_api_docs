@@ -1,5 +1,7 @@
 # InterServer API Documentation
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c5ef17020a4c44a08523ec8aa5ffd071)](https://www.codacy.com/app/detain/interserver_vps_soap_api_docs?utm_source=github.com&utm_medium=referral&utm_content=detain/interserver_vps_soap_api_docs&utm_campaign=badger)
+
   - <a href='https://my.interserver.net/'>Login / Signup At <b>InterServer</b></a>
   - <p>Source Sample Downloads:</p>
   - <a href='https://github.com/detain/interserver-api-php-samples' title='Download PHP Samples'>PHP</a>&nbsp;&nbsp;<a href='https://github.com/detain/interserver-api-perl-samples' title='Download Perl Samples'>Perl</a>&nbsp;&nbsp;<a href='https://github.com/detain/interserver-api-python-samples' title='Download Python Samples'>Python</a>&nbsp;&nbsp;<a href='https://github.com/detain/interserver-api-ruby-samples' title='Download Ruby Samples'>Ruby</a>
